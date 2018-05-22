@@ -35,7 +35,7 @@ h2 {
 .contain {
     overflow: hidden;
     border-bottom: 1px solid #aaa;
-    height: 120px;
+    height: 121px;
     padding: 10px;
     box-sizing: border-box;
 }
