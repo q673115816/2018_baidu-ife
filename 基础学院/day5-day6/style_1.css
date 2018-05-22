@@ -1,0 +1,12 @@
+b~span {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+div>h3:not(:first-of-type) {
+    margin-top: 1em;
+}
