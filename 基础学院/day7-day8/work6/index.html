@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="w">
+                <a href="javascript:;" class="logo fl">
+                    <h1>Logo</h1>
+                </a>
+                <ul class="fr">
+                    <li>
+                        <a href="javascript:;">GitHub</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Register</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="banner">
+            <div class="w">
+                <ul class="banner-nav">
+                    <li>
+                        <a href="javascript:;">1</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">2</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">3</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="contain">
+            <em></em>
+            
+            <div class="w">
+                <ul class="contain-nav">
+                    <li class="on">
+                        <a href="javascript:;">HOME</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">PROFILE</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">ABOUT</a>
+                    </li>
+                </ul>
+                <div class="article">
+                    <div>This is Contont 1</div>
+                    <div>MaybeContent 2</div>
+                    <div>Content 3</div>
+                    <div>Content 4</div>
+                    <div>Content 5</div>
+                    <div>Content 6</div>
+                    <div>Content 7</div>
+                    <div>Content 8</div>
+                    <div>Content 9</div>
+                    <div>Content 10</div>
+                </div>
+            </div>
+
+        </div>
+        <footer>&copy;2018 ife.baidu.com</footer>
+    </div>
+
+    <script>
+        window.addEventListener('load',function(){
+            var ul = document.querySelector('.contain-nav')
+            ul.addEventListener('click',function(e){
+                var that = e.target;
+                var lis = ul.querySelectorAll('li')
+                if(that.nodeName==='A'){
+                    lis.forEach(function(e,i){
+                        e.classList = '';
+                    })
+                that.parentElement.classList = 'on'
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

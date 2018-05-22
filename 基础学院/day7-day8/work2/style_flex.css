@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.wrap {
+    margin: 0 auto;
+    height: 500px;
+    background-color: #ace;
+    color: #fff;
+    text-align: center;
+    font-size: 48px;
+    line-height: 500px;
+    display: flex;
+}
+
+.left {
+    width: 200px;
+    height: 100%;
+    background-color: pink;
+}
+
+.right {
+    flex: 1;
+    height: 100%;
+    background-color: aqua;
+}

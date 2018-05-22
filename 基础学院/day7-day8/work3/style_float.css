@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.wrap {
+    margin: 0 auto;
+    height: 500px;
+    background-color: #ace;
+    color: #fff;
+    text-align: center;
+    font-size: 48px;
+    line-height: 500px;
+}
+
+.left {
+    float: left;
+    width: calc(100% - 200px);    
+    height: 100%;
+    background-color: pink;
+}
+
+.right {
+    float: right;
+    width: 200px;
+    height: 100%;
+    background-color: aqua;
+}

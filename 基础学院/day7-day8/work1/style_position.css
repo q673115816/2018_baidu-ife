@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.wrap {
+    margin: 0 auto;
+    height: 500px;
+    background-color: #ace;
+    color: #fff;
+    text-align: center;
+    font-size: 48px;
+    line-height: 500px;
+    position: relative;
+}
+
+.left {
+    position: absolute;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    background-color: pink;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background-color: aqua;
+}
