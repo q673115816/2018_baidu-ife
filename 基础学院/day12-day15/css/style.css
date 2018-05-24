@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font: 14px 'ProximaNova','Montserrat',sans-serif;
+}
+
+
+a {
+    color: #999;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.wrap {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    background: #1d2531;
+}
+
+header li {
+    padding: 10px 0;
+    position: relative;
+}
+
+header a {
+    display: block;
+    margin: 0 auto;
+    width: 60px;
+    height: 60px;
+    line-height: 56px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px;
+}
+
+header .info.on::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 4px solid transparent;
+    border-left: 4px solid #2399f1;
+    border-bottom: 4px solid transparent;
+}
+
+header .info a {
+    color: #fff;
+    background-image: linear-gradient(0deg, 
+		#1991eb 0%, 
+		#2ea1f8 100%);
+}
+
+header .rocket a {
+    color: #fff;
+    background-image: linear-gradient(0deg, 
+		#7f5be6 1%, 
+		#9d8fe3 100%);
+}
+
+header .game a {
+    color: #fff;
+    background-image: linear-gradient(180deg, 
+		#f45438 0%, 
+		#cb270a 100%);
+}
+
+header .add a {
+    color: #2d3848;
+    border: solid 3px #2d3848;
+}
+
+
+.contain {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    bottom: 0;
+    right: 0;
+}
+
+.contain nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: #222c3c;
+    padding: 24px 30px 54px 30px;    
+}
+
+.contain h4 {
+    margin-bottom: 24px;
+    font-weight: normal;
+    font-size: 12px;
+    color: #5b6779;
+    position: relative;
+}
+
+.contain h4 i {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.contain li {
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.contain a {
+    float: left;
+    color: #b7c0cd;
+    line-height: 24px;        
+}
+
+.contain-router > li {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2a3547;
+}
+
+.storage-space {
+    position: absolute;
+    bottom: 30px;
+    width: 190px;
+    color: #fff;
+}
+
+.storage-space div {
+    margin-top: 14px;
+    height: 4px;
+    background: rgba(71,83,100,0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.storage-space em {
+    display: block;
+    width: 40px;
+    height: 100%;
+	background-image: linear-gradient(0deg, 
+		#7f5be6 1%, 
+        #9d8fe3 100%);
+        border-radius: 2px;
+}
