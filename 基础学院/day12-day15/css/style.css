@@ -279,7 +279,7 @@ aside {
     overflow: auto;
     border-right: 1px solid #e6e9ec;
 }
-.main::-webkit-scrollbar,
+.main-contain::-webkit-scrollbar,
 aside::-webkit-scrollbar {
     display: none;
 }
@@ -371,7 +371,6 @@ aside li.active h4::before {
     left: 400px;
     right: 0;
     bottom: 0;
-    overflow: auto;
 }
 
 .main-header {
@@ -431,6 +430,9 @@ aside li.active h4::before {
 }
 
 .talk-input {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     padding: 20px 30px;
 }
 
@@ -459,7 +461,13 @@ aside li.active h4::before {
 }
 
 .main-contain {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 74px;
     padding-top: 24px;
+    overflow: auto;
 }
 
 .message {
