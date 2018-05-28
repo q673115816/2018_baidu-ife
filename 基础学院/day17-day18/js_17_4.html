@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function three(n = 100){
+            for (let index = 1; index <= n; index++) {
+                // es6
+                // var flag = index.toString().includes(3)
+                var flag = index.toString().split('').indexOf('3') > 0
+                if(index % 3 === 0 || flag) {
+                    console.log('PA')
+                }else{
+                    console.log(index)
+                }
+            }
+        }
+        three()
+    </script>
+</body>
+</html>

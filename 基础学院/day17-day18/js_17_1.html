@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+
+<body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        ! function () {
+            function App() {
+                this.value1 = document.querySelector('#first-number')
+                this.value2 = document.querySelector('#second-number')
+                this.output = document.querySelector('#result')
+                this.btns = document.querySelectorAll("button")
+                this.comp = {
+                    'add-btn': '+',
+                    'minus-btn': '-',
+                    'times-btn': '*',
+                    'divide-btn': '/'
+                }
+                for (let index = 0; index < this.btns.length; index++) {
+                    const element = this.btns[index];
+                    element.addEventListener('click', _ => {
+                        try {
+                        var val1 = Number.parseFloat.call(null,this.value1.value,10) 
+                        var val2 = Number.parseFloat.call(null,this.value2.value,10) 
+                        var result = eval(
+                                val1 + this.comp[element.id] + val2
+                            ) 
+                            if (element.id === 'divide-btn' &&  val2 === 0) throw 'divisor is zero'
+                            this.output.innerHTML = "运算结果"+ result
+                        } catch (error) {
+                            this.output.innerHTML = error
+                            console.log(error)
+                        }
+                    })
+                }
+            }
+            window.App = App
+        }(window)
+        new App();
+    </script>
+</body>
+
+</html>
