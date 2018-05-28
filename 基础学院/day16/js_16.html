@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+
+<body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        ! function () {
+            function App() {
+                this.value1 = document.querySelector('#first-number')
+                this.value2 = document.querySelector('#second-number')
+                this.output = document.querySelector('#result')
+                this.btns = document.querySelectorAll("button")
+                this.comp = {
+                    'add-btn': '+',
+                    'minus-btn': '-',
+                    'times-btn': '*',
+                    'divide-btn': '/'
+                }
+                for (let index = 0; index < this.btns.length; index++) {
+                    const element = this.btns[index];
+                    element.addEventListener('click', _ => {
+                        var val1 = this.value1.value
+                        var val2 = this.value2.value
+                        this.output.innerHTML = "运算结果"+ eval(
+                            val1 + this.comp[element.id] + val2
+                        ) 
+                    })
+                }
+            }
+            window.App = App
+        }(window)
+        new App();
+    </script>
+</body>
+
+</html>
