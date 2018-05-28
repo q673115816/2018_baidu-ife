@@ -30,8 +30,8 @@
                 for (let index = 0; index < this.btns.length; index++) {
                     const element = this.btns[index];
                     element.addEventListener('click', _ => {
-                        var val1 = this.value1.value
-                        var val2 = this.value2.value
+                        var val1 = Number.parseFloat.call(null,this.value1.value,10) 
+                        var val2 = Number.parseFloat.call(null,this.value2.value,10) 
                         this.output.innerHTML = "运算结果"+ eval(
                             val1 + this.comp[element.id] + val2
                         ) 
