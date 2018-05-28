@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+<body>            
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+    <script>
+        // ! function(){
+
+        //     function School(){
+        //         this.input = document.getElementById('#school')
+        //         this.select = document.getElementById('#school-select')
+        //     }
+        //     function Company(){
+        //         this.ipnut = document.getElementById('#company')
+        //         this.select = document.getElementById('#company-select')
+        //     }
+
+        //     function App(){
+        //         school = new School()
+        //         company = new Company()
+        //         school.input.addEventListener('click',this.choose.bind(this.school))
+        //     }
+
+        //     App.prototype.choose = function(){
+        //         this.select.style.display = 'block'
+        //     }
+        //     window.App = App
+        // }(window)
+        // new App()
+    </script>
+
+    <script>
+        window.addEventListener('load',function(){
+            var input = document.querySelectorAll('input[type="radio"]')
+            var select = document.querySelectorAll('select')
+            for (let i = 0; i < input.length; i++) {
+                const element = input[i]
+                element.addEventListener('click',function(){
+                    select.forEach(function(e,i){
+                        e.style.display = 'none'
+                    })
+                    const id = this.id
+                    document.querySelector('#'+id+'-select').style.display = 'block'
+                })
+            }
+        })
+    </script>
+</body>
+</html>
