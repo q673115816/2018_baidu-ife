@@ -30,46 +30,59 @@
         <option>爱奇艺</option>        
     </select>
     <script>
-        // ! function(){
+        ! function(){
 
-        //     function School(){
-        //         this.input = document.getElementById('#school')
-        //         this.select = document.getElementById('#school-select')
-        //     }
-        //     function Company(){
-        //         this.ipnut = document.getElementById('#company')
-        //         this.select = document.getElementById('#company-select')
-        //     }
+            // function School(){
+            //     this.input = document.querySelector('#school')
+            //     this.select = document.querySelector('#school-select')
+            // }
+            
+            // function Company(){
+            //     this.input = document.querySelector('#company')
+            //     this.select = document.querySelector('#company-select')
+            // }
 
-        //     function App(){
-        //         school = new School()
-        //         company = new Company()
-        //         school.input.addEventListener('click',this.choose.bind(this.school))
-        //     }
+            function Select(){
+                this.select = document.querySelectorAll('select')
+            }
 
-        //     App.prototype.choose = function(){
-        //         this.select.style.display = 'block'
-        //     }
-        //     window.App = App
-        // }(window)
-        // new App()
+            function Input(){
+                this.input = document.querySelectorAll('input')
+            }
+
+            function App(){
+                this.select = new Select()
+                this.input = new Input()
+            }
+
+            App.prototype.choose = (function(){
+                
+                this.select.style.display = 'block'
+                // if(this.input.checked===true){
+                // }else{
+                //     this.select.style.display = 'none'
+                // }
+            })()
+            window.App = App
+        }(window)
+        new App()
     </script>
 
     <script>
-        window.addEventListener('load',function(){
-            var input = document.querySelectorAll('input[type="radio"]')
-            var select = document.querySelectorAll('select')
-            for (let i = 0; i < input.length; i++) {
-                const element = input[i]
-                element.addEventListener('click',function(){
-                    select.forEach(function(e,i){
-                        e.style.display = 'none'
-                    })
-                    const id = this.id
-                    document.querySelector('#'+id+'-select').style.display = 'block'
-                })
-            }
-        })
+        // window.addEventListener('load',function(){
+        //     var input = document.querySelectorAll('input[type="radio"]')
+        //     var select = document.querySelectorAll('select')
+        //     for (let i = 0; i < input.length; i++) {
+        //         const element = input[i]
+        //         element.addEventListener('click',function(){
+        //             select.forEach(function(e,i){
+        //                 e.style.display = 'none'
+        //             })
+        //             const id = this.id
+        //             document.querySelector('#'+id+'-select').style.display = 'block'
+        //         })
+        //     }
+        // })
     </script>
 </body>
 </html>
