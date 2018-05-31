@@ -31,38 +31,27 @@
     </select>
     <script>
         ! function(){
-
-            // function School(){
-            //     this.input = document.querySelector('#school')
-            //     this.select = document.querySelector('#school-select')
-            // }
-            
-            // function Company(){
-            //     this.input = document.querySelector('#company')
-            //     this.select = document.querySelector('#company-select')
-            // }
-
             function Select(){
-                this.select = document.querySelectorAll('select')
+                return document.querySelectorAll('select')
             }
-
             function Input(){
-                this.input = document.querySelectorAll('input')
+                return document.querySelectorAll('input')
             }
-
             function App(){
-                this.select = new Select()
                 this.input = new Input()
+                this.select = new Select()
+                for (let i = 0; i < this.input.length; i++) {
+                    const element = this.input[i];
+                    element.addEventListener('click',this.choose.bind(this,element))
+                }
             }
-
-            App.prototype.choose = (function(){
-                
-                this.select.style.display = 'block'
-                // if(this.input.checked===true){
-                // }else{
-                //     this.select.style.display = 'none'
-                // }
-            })()
+            App.prototype.choose = function(targe){
+                for (let i = 0; i < this.select.length; i++) {
+                    const element = this.select[i];
+                    element.style.display = 'none'
+                }
+                document.getElementById(targe.id+'-select').style.display = 'block'
+            }
             window.App = App
         }(window)
         new App()
