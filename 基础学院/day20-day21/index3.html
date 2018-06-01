@@ -32,17 +32,51 @@
     <p class="color-picker"></p>
 
     <script>
-        var list = document.querySelectorAll("li");
-        for (var i = i = 0, len = list.length; i < len; i++) {
-            list[i].onclick = function(e) {
+        // var list = document.querySelectorAll("li");
+        // for (var i = i = 0, len = list.length; i < len; i++) {
+        //     list[i].onclick = function(e) {
+        //         var t = e.target;
+        //         var c = t.style.backgroundColor;
+        //         var p = document.getElementsByClassName("color-picker")[0]
+        //         p.innerHTML = c;
+        //         p.style.color = c;
+
+        //     }
+        // }
+
+        // 事件代理
+        // var ul = document.querySelector('ul')
+        // var p = document.getElementsByClassName("color-picker")[0]
+        // ul.addEventListener('click',function(e){
+        //     var e = e || window.event
+        //     var t = e.target;
+        //     var c = t.style.backgroundColor;
+        //     if(t.nodeName ==='LI'){
+        //         p.innerHTML = c;
+        //         p.style.color = c;
+        //     }
+        // })
+
+        // 面向对象
+
+        !function(window){
+            var App = function(){
+                this.ul = document.querySelector('ul')
+                this.p = document.getElementsByClassName("color-picker")[0]
+                this.ul.addEventListener('click',this.choose.bind(this,event))
+            }
+            App.prototype.choose = function(e){
+                var e = e || window.event
                 var t = e.target;
                 var c = t.style.backgroundColor;
-                var p = document.getElementsByClassName("color-picker")[0]
-                p.innerHTML = c;
-                p.style.color = c;
-
+                if(t.nodeName ==='LI'){
+                this.p.innerHTML = c;
+                this.p.style.color = c;
+                }
             }
-        }
+        window.App = App
+        }(window)
+        new App()
     </script>
 </body>
 </html>
