@@ -64,23 +64,38 @@
         //     }
         // })
 
-        !function(window){
-            var App = function(){
+        ! function (window) {
+            var App = function () {
+                this.txt = ['淡出', '淡入']
                 this.box = document.querySelector('#fade-obj')
                 this.box.style.opacity = 1
                 this.btn = document.querySelector('#fade-btn')
+                this.btn.innerText = this.txt[0]
                 this.target = 0
                 this.timer = null
-                this.txt = ['淡出','淡入']
                 this.btn.addEventListener('click', this.opa.bind(this))
             }
-            App.prototype.opa = function(){
-                this.timer = setInterval( _ => {
-                    
-                })
+            App.prototype.opa = function () {
+                this.btn.setAttribute('disabled', true)
+                var speed
+                if (this.target === 0) {
+                    speed = -0.1
+                    this.target = 1
+                } else {
+                    speed = 0.1
+                    this.target = 0
+                }
+                this.timer = setInterval(_ => {
+                    this.box.style.opacity = +this.box.style.opacity + speed
+                    if (this.box.style.opacity <= 0 ||
+                        this.box.style.opacity >= 1) {
+                        clearInterval(this.timer)
+                        this.btn.innerText = this.txt[this.target]
+                        this.btn.removeAttribute('disabled')
+                        return false
+                    }
+                }, 100)
             }
-
-
             window.App = App
         }(window)
         new App()
