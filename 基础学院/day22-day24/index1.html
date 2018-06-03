@@ -50,9 +50,14 @@
                 }
             })
             btns[1].addEventListener('click', function () {
-                var val1 = +inp[0].value || 0
-                var val2 = +inp[1].value || 0
                 try {
+                    var val1 = inp[0].value
+                    var val2 = inp[1].value || 0
+                    var flag = parseFloat(val1).toString() === 'NaN'
+                    console.log(flag)
+                    if (flag) {
+                        throw 'NaN'
+                    }
                     p.innerHTML = val1.toFixed(val2)
                 } catch (error) {
                     console.log(error)
