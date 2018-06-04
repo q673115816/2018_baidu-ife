@@ -31,39 +31,110 @@
     </div>
     <p id="result"></p>
     <script>
-        window.addEventListener('load', function () {
-            var flag
-            var lab = document.querySelectorAll('label')
-            var inp = document.querySelectorAll('input[type=text]')
-            var btns = document.querySelectorAll('button')
-            var p = document.querySelector('p')
-            lab.forEach(function (ele, i) {
-                ele.addEventListener('click', function (e) {
-                    flag = i
+        // 按照HTML中按钮的描述以此实现功能
+        // 计算结果显示在 id 为 result 的 P 标签中
+        // 除了第一个按钮，其它按钮操作时，都需要判断输入是否为数字，否则在 console 中输出错误信息
+
+        ! function (window) {
+            var App = function () {
+                this.btns = document.querySelectorAll('button')
+                this.rads = document.querySelectorAll('input[type=radio]')
+                this.inps = document.querySelectorAll('input[type=text]')
+                this.p = document.querySelector('p')
+                this.txt = /^\d+$/
+                this.flag = null;
+                Array.prototype.forEach.call(this.rads, (e, i) => {
+                    e.addEventListener('change', _ => {
+                        this.flag = i
+                    })
                 })
-            })
-            btns[0].addEventListener('click', function () {
-                try {
-                    p.innerHTML = parseFloat(inp[flag].value).toString() !== 'NaN' ? '是' : '否'
-                } catch (error) {
-                    console.log(error)
-                }
-            })
-            btns[1].addEventListener('click', function () {
-                try {
-                    var val1 = inp[0].value
-                    var val2 = inp[1].value || 0
-                    var flag = parseFloat(val1).toString() === 'NaN'
-                    console.log(flag)
-                    if (flag) {
-                        throw 'NaN'
+                this.btns[0].addEventListener('click', _ => {
+                    try {
+                        if (!this.choose()) throw 'is not choose'
+                        this.p.innerText = this.txt.test(this.inps[this.flag].value) ? '是' : '否'
+                    } catch (error) {
+                        console.log(error)
                     }
-                    p.innerHTML = val1.toFixed(val2)
+                })
+                this.btns[1].addEventListener('click', _ => {
+                    this.getBoth(function(){
+                        this.p.innerText = parseFloat(this.inps[0].value).toFixed(this.inps[1].value)
+                    })
+                })
+                this.btns[2].addEventListener('click', _ => {
+                    this.getTar(function(){
+                        var val = this.inps[this.flag].value
+                        this.p.innerText = val<0?-val:val
+                    })
+                })
+                this.btns[3].addEventListener('click',_=>{
+                    this.getTar(function(){
+                        var val = this.inps[this.flag].value
+                        this.p.innerText = Math.ceil(val)
+                    })
+                })
+                this.btns[4].addEventListener('click',_=>{
+                    this.getTar(function(){
+                        var val = this.inps[this.flag].value
+                        this.p.innerText = Math.floor(val)
+                    })
+                })
+                this.btns[5].addEventListener('click',_=>{
+                    this.getTar(function(){
+                        var val = this.inps[this.flag].value
+                        this.p.innerText = Math.round(val)
+                    })
+                })
+                this.btns[6].addEventListener('click',_=>{
+                    this.getBoth(function(){
+                        this.p.innerText = Math.max(this.inps[0].value,this.inps[1].value)
+                    })
+                })
+                this.btns[7].addEventListener('click',_=>{
+                    this.getBoth(function(){
+                        this.p.innerText = Math.min(this.inps[0].value,this.inps[1].value)
+                    })
+                })
+            }
+            App.prototype.choose = function () {
+                if (this.flag === null) {
+                    return false
+                }
+                return true
+            }
+            App.prototype.isNum = function () {
+                var val1 = this.txt.test(this.inps[0].value)
+                var val2 = this.txt.test(this.inps[1].value)
+                if (val1 && val2) {
+                    return true
+                }
+                return false
+            }
+            App.prototype.getBoth = function (fn) {
+                try {
+                    if (!this.isNum()) throw 'is not number'
+                    fn.call(this)
+                    
                 } catch (error) {
                     console.log(error)
+                    this.p.innerText = error
                 }
-            })
-        })
+            }
+            App.prototype.getTar = function (fn) {
+                try {
+                        if (!this.choose()) throw 'is not choose'
+                        var val = this.inps[this.flag].value === ''
+                        if(val) throw 'is not code'
+                        fn.call(this)
+                    } catch (error) {
+                        console.log(error)
+                    }
+            }
+
+            window.App = App
+        }(window)
+
+        new App()
     </script>
 </body>
 
