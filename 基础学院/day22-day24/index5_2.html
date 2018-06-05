@@ -10,7 +10,7 @@
 
 <body>
     <input id="queue-input" type="text">
-    <p id="queue-cont">队列内容：apple-&gt;pear</p>
+    <p id="queue-cont">队列内容：apple&lt;-pear</p>
     <button id="in-btn">入队</button>
     <button id="out-btn">出队</button>
     <button id="font-btn">打印队头元素内容</button>
@@ -18,9 +18,10 @@
 
     <script>
         // 实现如阅读材料中，队列的相关入队、出队、获取队头、判空的操作
-        // 队头对应数组中最后一个元素
-        // 入队和出队操作后，需要在 id 为 queue-cont 的 p 标签中更新显示队列中的内容，队头在最右侧，中间用 -> 连接（练习使用数组的join方法）
+        // 队头对应数组中第一个元素
+        // 入队和出队操作后，需要在 id 为 queue-cont 的 p 标签中更新显示队列中的内容，队头在最左侧，中间用 <- 连接（练习使用数组的join方法）
         var queue = ["apple", "pear"];
+
         ! function () {
             var p = document.querySelector('p')
             var input = document.querySelector('input')
@@ -28,22 +29,23 @@
             var out_btn = document.querySelector('#out-btn')
             var font_btn = document.querySelector('#font-btn')
             var empty_btn = document.querySelector('#empty-btn')
+
             in_btn.addEventListener('click', function () {
-                queue.unshift(input.value)
+                queue.push(input.value)
                 queue = queue.filter(function (currentValue) {
                     return currentValue !== undefined && currentValue != null && currentValue != '';
                 })
-                p.innerHTML = '队列内容：' + queue.join('-&gt;')
+                p.innerHTML = '队列内容：' + queue.join('&lt;-')
             })
             out_btn.addEventListener('click', function () {
-                queue.pop()
+                queue.shift()
                 queue = queue.filter(function (currentValue) {
                     return currentValue !== undefined && currentValue != null && currentValue != '';
                 })
-                p.innerHTML = '队列内容：' + queue.join('-&gt;')
+                p.innerHTML = '队列内容：' + queue.join('&lt;-')
             })
             font_btn.addEventListener('click', function () {
-                p.innerHTML = '队头：' + queue[queue.length - 1]
+                p.innerHTML = '队头：' + queue[0]
             })
             empty_btn.addEventListener('click', function () {
                 queue = queue.filter(function (currentValue) {

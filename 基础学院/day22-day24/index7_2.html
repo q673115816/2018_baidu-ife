@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var menuArr = [
+            [1, "Area1", -1],
+            [2, "Area2", -1],
+            [3, "Area1-1", 1],
+            [4, "Area1-2", 1],
+            [5, "Area2-1", 2],
+            [6, "Area2-2", 2],
+            [7, "Area1-2-3", 4],
+            [8, "Area2-2-1", 6],
+        ];
+        var obj = {}
+        function toTree(data){
+            var map = {
+            
+            }
+            data.forEach(ele => {
+                map[ele[0]] = {
+                    name:ele[1]
+                }
+            });
+            var val = {}
+            data.forEach(ele => {
+                var pa
+            });
+            return map
+        }
+        console.log(toTree(menuArr))
+    </script>
+</body>
+
+</html>
