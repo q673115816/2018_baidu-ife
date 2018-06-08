@@ -65,12 +65,32 @@
 
         // 假设id和name均不会重复，根据输入name找到对应的id
         function findIdByName(name) {
-            
+            var _id
+            !function fn(node,name){
+                if(node){
+                    if(node.name == name){
+                        _id = node.id
+                    }
+                    fn(node.left,name)
+                    fn(node.right,name)
+                }
+            }(tree,name)
+            return _id
         }
 
         // 假设id和name均不会重复，根据输入id找到对应的name
         function findNameById(id) {
-
+            var _name
+            !function fn(node,id){
+                if(node){
+                    if(node.id == id){
+                        _name = node.name
+                    }
+                    fn(node.left,id)
+                    fn(node.right,id)
+                }
+            }(tree,id)
+            return _name
         }
 
         // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
@@ -115,6 +135,8 @@
             }(tree)
         }
 
+        console.log(findIdByName('Carl'))
+        console.log(findNameById(7))
         getListWithDLR()
         getListWithLDR()
         getListWithLRD()
