@@ -55,7 +55,93 @@
     <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
 
     <script>
-    
+        // 使用上方的HTML结构（可以根据需要自行微调）为基础编写JavaScript代码
+        // 当变更任何一个select选择时，更新 result-wrapper 的内容
+        // 当所选时间早于现在时间时，文案为 现在距离 "所选时间" 已经过去 xxxx
+        // 当所选时间晚于现在时间时，文案为 现在距离 "所选时间" 还有 xxxx
+        // 注意当前时间经过所选时间时候的文案变化
+        // 注意选择不同月份的时候，日期的可选范围不一样，比如1月可以选31天，11月只有30天，注意闰年
+        // 同样，需要注意，通过优雅的函数封装，使得代码更加可读且可维护
+
+        window.addEventListener('load', function () {
+            var isleapyear = false
+            var date = new Date()
+            var year = document.querySelector('#year-select')
+            var month = document.querySelector('#month-select')
+            var day = document.querySelector('#day-select')
+            var hour = document.querySelector('#hour-select')
+            var min = document.querySelector('#minite-select')
+            var sec = document.querySelector('#second-select')
+            var p = document.querySelector('#result-wrapper')
+            year.innerHTML = ''
+            month.innerHTML = ''
+            day.innerHTML = ''
+            hour.innerHTML = ''
+            min.innerHTML = ''
+            sec.innerHTML = ''
+            for (let index = 0; index < 60; index++) {
+                sec.innerHTML += '<option value="' + index + '">' + index + '</option>'
+                min.innerHTML += '<option value="' + index + '">' + index + '</option>'
+            }
+            for (let index = 0; index < 24; index++) {
+                hour.innerHTML += '<option value="' + index + '">' + index + '</option>'
+            }
+            for (let index = 0; index < 100; index++) {
+                year.innerHTML += '<option value="' + (1950 + index) + '">' + (1950 + index) + '</option>'
+            }
+            for (let index = 0; index < 12; index++) {
+                month.innerHTML += '<option value="' + (index + 1) + '">' + (index + 1) + '</option>'
+            }
+            for (let index = 0; index < 12; index++) {
+                month.innerHTML += '<option value="' + (index + 1) + '">' + (index + 1) + '</option>'
+            }
+
+            function getDay(day) {
+                var day = day || new Date().getDay()
+                switch (day) {
+                    case 1:
+                        day = '一'
+                        break;
+                    case 2:
+                        day = '二'
+                        break;
+                    case 3:
+                        day = '三'
+                        break;
+                    case 4:
+                        day = '四'
+                        break;
+                    case 5:
+                        day = '五'
+                        break;
+                    case 6:
+                        day = '六'
+                        break;
+                    case 7:
+                        day = '日'
+                        break;
+                }
+                return day
+            }
+
+            document.addEventListener('change',function(e){
+                var e = e || window.event
+                var t = e.target
+                if(t.nodeName ==="SELECT") {
+                    var selectT = new Date(`${yrar.value}.${month.value}.${day.value}`)
+                    var day = selectT.getDay()
+                    p.innerHTML = `现在距离 ${year.value}年1月1日星期${getDay(day)} ${hour.value}:${min.value}:${sec.value} 还有 X 天 X 小时 X 分 X 秒`
+                }
+            })
+
+            year.addEventListener('change',function(){
+                
+            })
+
+
+
+
+        })
     </script>
 </body>
 

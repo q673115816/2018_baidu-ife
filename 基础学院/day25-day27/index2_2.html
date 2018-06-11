@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        ! function () {
+            var box = document.querySelector('div') 
+            ;(function fn() {
+                setInterval(function () {
+                    box.innerHTML = t()
+                }, 1000)
+            })();
+
+            function rip(num) {
+                if (num < 10) {
+                    return '0' + num
+                } else {
+                    return num
+                }
+            }
+
+            function t() {
+                return `${year()}-${month(null,true)}-${date(null,true)} ${getDay()} ${time()}`
+            }
+
+            function year(year) {
+                var year = year || new Date().getFullYear()
+                return year
+            }
+
+            function month(month, flag) {
+                var month = month || new Date().getMonth() + 1
+                if (flag === true) {
+                    return rip(month)
+                }
+                return month
+            }
+
+            function date(date, flag) {
+                var date = date || new Date().getDate()
+                if (flag === true) {
+                    return rip(date)
+                }
+                return date
+            }
+
+            function getDay(day) {
+                var day = day || new Date().getDay()
+                switch (day) {
+                    case 1:
+                        day = 'Monday'
+                        break;
+                    case 2:
+                        day = 'Tuesday'
+                        break;
+                    case 3:
+                        day = 'Wednesday'
+                        break;
+                    case 4:
+                        day = 'Thursday'
+                        break;
+                    case 5:
+                        day = 'Friday'
+                        break;
+                    case 6:
+                        day = 'Saturday'
+                        break;
+                    case 7:
+                        day = 'Sunday'
+                        break;
+                }
+                return day
+            }
+
+            function hour(hour, flag) {
+                var hour = hour || new Date().getHours()
+                if (flag === true) {
+                    return rip(hour)
+                }
+                return hour
+            }
+
+            function min(min, flag) {
+                var min = min || new Date().getMinutes()
+                if (flag === true) {
+                    return rip(min)
+                }
+                return min
+            }
+
+            function sec(sec, flag) {
+                var sec = sec || new Date().getSeconds()
+                if (flag === true) {
+                    return rip(sec)
+                }
+                return sec
+            }
+
+            function time() {
+                if (hour(null, true) >= 12) {
+                    return `${hour(null,true)-12} : ${min(null,true)} : ${sec(null,true)} PM`
+                } else {
+                    return `${hour(null,true)} : ${min(null,true)} : ${sec(null,true)} AM`
+                }
+            }
+        }()
+    </script>
+</body>
+
+</html>
