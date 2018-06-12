@@ -75,7 +75,7 @@
             var p = document.querySelector('#result-wrapper')
             year.innerHTML = ''
             month.innerHTML = ''
-            day.innerHTML = ''
+            
             hour.innerHTML = ''
             min.innerHTML = ''
             sec.innerHTML = ''
@@ -87,14 +87,41 @@
                 hour.innerHTML += '<option value="' + index + '">' + index + '</option>'
             }
             for (let index = 0; index < 100; index++) {
+                if(index == 51){
+                    year.innerHTML += '<option value="' + (1950 + index) + '" selected>' + (1950 + index) + '</option>'
+                    continue
+                }
                 year.innerHTML += '<option value="' + (1950 + index) + '">' + (1950 + index) + '</option>'
             }
             for (let index = 0; index < 12; index++) {
                 month.innerHTML += '<option value="' + (index + 1) + '">' + (index + 1) + '</option>'
             }
-            for (let index = 0; index < 12; index++) {
-                month.innerHTML += '<option value="' + (index + 1) + '">' + (index + 1) + '</option>'
+            function oneMouth(month,isleapyear){
+                day.innerHTML = ''
+                var month =  +month || 1
+                var flag
+                switch (month) {
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        flag = 30
+                        break;
+                    case 2:
+                        flag = 28
+                        break;
+                    default:
+                        flag = 31
+                        break;
+                }
+                if(isleapyear && month===2){
+                    flag = 29
+                }
+                for (let index = 0; index < flag; index++) {
+                    day.innerHTML += '<option value="' + (index + 1) + '">' + (index + 1) + '</option>'
+                }
             }
+            oneMouth()
 
             function getDay(day) {
                 var day = day || new Date().getDay()
@@ -124,18 +151,36 @@
                 return day
             }
 
-            document.addEventListener('change',function(e){
+            function rip(t){
+                if(t<10){
+                    return '0' + t
+                }
+                return t
+            }
+
+            document.addEventListener('change', function (e) {
                 var e = e || window.event
                 var t = e.target
-                if(t.nodeName ==="SELECT") {
-                    var selectT = new Date(`${yrar.value}.${month.value}.${day.value}`)
-                    var day = selectT.getDay()
-                    p.innerHTML = `现在距离 ${year.value}年1月1日星期${getDay(day)} ${hour.value}:${min.value}:${sec.value} 还有 X 天 X 小时 X 分 X 秒`
+                if (t.nodeName === "SELECT") {
+                    var selectT = new Date(`${year.value}.${month.value}.${day.value}`)
+                    var time = selectT.getDay()
+                    p.innerHTML =
+                        `现在距离 ${year.value}年${month.value}月${day.value}日星期${getDay(time)} ${rip(hour.value)}:${rip(min.value)}:${rip(sec.value)} 还有 X 天 X 小时 X 分 X 秒`
                 }
             })
 
-            year.addEventListener('change',function(){
-                
+            year.addEventListener('change', function () {
+                var val = this.value
+                if(val % 400 ===0 || val % 4===0 && val % 100 !== 0){
+                    isleapyear = true
+                }else{
+                    isleapyear = false
+                }
+                console.log(isleapyear)
+            })
+
+            month.addEventListener('change',function(){
+                oneMouth(this.value,isleapyear)
             })
 
 
