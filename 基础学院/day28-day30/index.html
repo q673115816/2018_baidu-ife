@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script>
+        ! function (window) {
+            var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+            function App() {
+                this.ul = document.getElementById("email-sug-wrapper")
+                this.inp = document.getElementById('email-input')
+                this.inp.addEventListener('input', function(){
+                    this.inner()
+                    this.dis()
+                }.bind(this))
+            }
+            App.prototype.val = function(){
+                var val = this.inp.value.trim() || ''
+                var index = val.indexOf('@') 
+                if(index>=0){
+                    return val.slice(0,index)
+                }else{
+                    return val
+                }
+            }
+            App.prototype.lis = function(){
+                var txt = ''
+                for (let i = 0; i < postfixList.length; i++) {
+                    const element = postfixList[i];
+                    txt += '<li>'+ this.val()+ '@' + element+ '</li>'
+                }
+                return txt
+            }
+            App.prototype.inner = function(){
+                this.ul.innerHTML = this.lis()
+            }
+            App.prototype.dis = function(){
+                if(!!this.val()){
+                    this.show()
+                }else{
+                    this.hide()
+                }
+            }
+            App.prototype.show = function(){
+                this.ul.style.display = 'block'
+            }
+            App.prototype.hide = function(){
+                this.ul.style.display = 'none'
+            }
+            window.App = App
+        }(window)
+        new App()
+    </script>
+</body>
+
+</html>
