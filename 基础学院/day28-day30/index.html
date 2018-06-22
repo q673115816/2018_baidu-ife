@@ -7,8 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        input {
+            width: 200px;
+            height: 36px;
+            line-height: 36px;
+            border: 1px solid #ccc;
+            padding: 0;
+            padding-left: 10px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        ul {
+            width: 200px;
+            overflow: hidden;
+        }
+        li {
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+        li:last-of-type {
+            border-bottom: 1px solid #ccc;
+        }
         .on {
-            background-image: linear-gradient(to right,#999 0 ,#999 100%)
+            background-image: linear-gradient(to right,pink 0 ,pink 100%)
         }
     </style>
 </head>
@@ -25,6 +52,7 @@
             function App() {
                 this.ul = document.getElementById("email-sug-wrapper")
                 this.inp = document.getElementById('email-input')
+                this.index = 0
                 this.inp.addEventListener('input', function () {
                     this.inner()
                     this.dis()
@@ -51,6 +79,7 @@
                         this.inp.value = t.innerHTML
                         this.ul.innerHTML = ''
                     }
+                    this.inp.focus()
                 }.bind(this, event))
                 var keyEvent = this.keyEvent.bind(this,event)
                 this.inp.addEventListener('focus',function(){
@@ -64,37 +93,51 @@
             App.prototype.keyEvent = function(e){
                 var e = e || window.event
                 var li = this.ul.querySelectorAll('li')
-                var t = this.ul.querySelector('.on')
+                var t = this.ul.querySelectorAll('li')[this.index]
+                console.log(e.keyCode)
+                // ↑
                 if(e.keyCode===38){
                     e.preventDefault()
                     li.forEach((e,i)=>{
                         e.className = ''
                     })
                     if(t.previousElementSibling){
+                        this.index--
                         t.previousElementSibling.classList.add('on')
                     }
                     else{
+                        this.index = li.length-1
                         li[li.length-1].classList.add('on')
                     }
                 }
+                // ↓
                 if(e.keyCode===40){
                     e.preventDefault()
                     li.forEach((e,i)=>{
                         e.className = ''
                     })
                     if(t.nextElementSibling){
+                        this.index++
                         t.nextElementSibling.classList.add('on')
                     }
                     else{
+                        this.index=0
                         li[0].classList.add('on')
                     }
                 }
+                // 回车
                 if(e.keyCode===13){
                     e.preventDefault()
                     t.click()
                 }
+                // esc
+                if(e.keyCode===27){
+                    e.preventDefault()
+                    this.inp.select()
+                }
             }
             App.prototype.reset = function(flag){
+                this.index = 0
                 var li = this.ul.querySelectorAll('li')
                 var flag = flag || 0
                 for (let i = 0; i < li.length; i++) {
