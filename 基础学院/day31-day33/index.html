@@ -13,6 +13,7 @@
         <select id="region-select">
             <option>....</option>
         </select>
+        <select id="product-select"></select>
         <div id="table-wrapper">
 
         </div>
@@ -58,27 +59,47 @@
         }]
 
         ;(function(){
+            var def = {
+                region:'all',
+                product:'all'
+            }
             var select = document.getElementById('region-select')
+            var typeselect = document.getElementById('product-select')
             var div = document.getElementById('table-wrapper')
-            select.innerHTML = ''
-            var arr = []
+            select.innerHTML = '<option value="all"></option>'
+            typeselect.innerHTML = '<option value="all"></option>'
+            var region = []
+            var product = []
             sourceData.forEach(element => {
-                arr.push(element.region)
+                region.push(element.region)
+                product.push(element.product)
             });
-            arr = [...new Set(arr)]
-            console.log(arr)
-            arr.forEach(e => {
+            region = [...new Set(region)]
+            product = [...new Set(product)]
+            console.log(region)
+            console.log(product)
+            region.forEach(e => {
                 select.innerHTML += `<option>${e}</option>`
             })
-            select.addEventListener('change',function(){
-                div.innerHTML = table(this.value)
+            product.forEach(e => {
+                typeselect.innerHTML += `<option>${e}</option>`
             })
-            function table(local){
-                var local = local || '华北'
+            document.addEventListener('change',function(e){
+                var e = e || window.event
+                var t = e.target
+                if(t.nodeName === 'SELECT'){
+                    def[t.id.slice(0,t.id.indexOf('-'))] = t.value
+                    console.log(def)
+                    div.innerHTML = table(def)
+                }
+            })
+            function table(def){
+                var local = def.region
+                var type = def.product
                 var arr = []
-                var txt 
+                var txt = ''
                 sourceData.forEach(element => {
-                    if(element.region===local){
+                    if(element.region === local || local==='all' && element.product === type || type==='all'){
                         txt += '<tr><td>'+element.product+'</td><td>'+element.region+'</td>'
                         element.sale.forEach(element => {
                             txt +='<td>' + element + '</td>'
@@ -87,25 +108,24 @@
                     }
                 });
                 return `<table>
-                    <tr>
-                        <th>商品</th>
-                        <th>地区</th>
-                        <th>1月</th>
-                        <th>2月</th>
-                        <th>3月</th>
-                        <th>4月</th>
-                        <th>5月</th>
-                        <th>6月</th>
-                        <th>7月</th>
-                        <th>8月</th>
-                        <th>9月</th>
-                        <th>10月</th>
-                        <th>11月</th>
-                        <th>12月</th>
-                    </tr>
-                    ${txt}
+                            <tr>
+                                <th>商品</th>
+                                <th>地区</th>
+                                <th>1月</th>
+                                <th>2月</th>
+                                <th>3月</th>
+                                <th>4月</th>
+                                <th>5月</th>
+                                <th>6月</th>
+                                <th>7月</th>
+                                <th>8月</th>
+                                <th>9月</th>
+                                <th>10月</th>
+                                <th>11月</th>
+                                <th>12月</th>
+                            </tr>
+                        ${txt}
                 </table>`
-
             }
         })();
     </script>
