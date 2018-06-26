@@ -10,10 +10,12 @@
 
 <body>
     <div class="wrap">
-        <select id="region-select">
-            <option>....</option>
-        </select>
-        <select id="product-select"></select>
+        <div id="region-select">
+            <input type="checkbox"><label for=""></label>
+        </div>
+        <div id="product-select">
+            <input type="checkbox"><label for=""></label>
+        </div>
         <div id="table-wrapper">
 
         </div>
@@ -58,16 +60,17 @@
             sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
         }]
 
-        ;(function(){
+        ;
+        (function () {
             var def = {
-                region:'all',
-                product:'all'
+                // region: 'all',
+                // product: 'all'
             }
             var select = document.getElementById('region-select')
             var typeselect = document.getElementById('product-select')
             var div = document.getElementById('table-wrapper')
-            select.innerHTML = '<option value="all"></option>'
-            typeselect.innerHTML = '<option value="all"></option>'
+            select.innerHTML = '<label for=""><input type="checkbox" name="region" value="all">全部地区</label>'
+            typeselect.innerHTML = '<label for=""><input type="checkbox" name="product" value="all">全部种类</label>'
             var region = []
             var product = []
             sourceData.forEach(element => {
@@ -79,34 +82,50 @@
             console.log(region)
             console.log(product)
             region.forEach(e => {
-                select.innerHTML += `<option>${e}</option>`
+                select.innerHTML += `<label for=""><input type="checkbox" name="region" value="${e}">${e}</label>`
             })
             product.forEach(e => {
-                typeselect.innerHTML += `<option>${e}</option>`
+                typeselect.innerHTML += `<label for=""><input type="checkbox" name="product" value="${e}">${e}</label>`
             })
-            document.addEventListener('change',function(e){
+            document.addEventListener('change', function (e) {
                 var e = e || window.event
                 var t = e.target
-                if(t.nodeName === 'SELECT'){
-                    def[t.id.slice(0,t.id.indexOf('-'))] = t.value
+                if (t.nodeName === 'INPUT') {
+                    console.log(e)
+                    if(def[t.name]){
+                        def[t.name] = t.value
+                    }else{
+                        def[t.name] = t.value
+                    }
                     console.log(def)
                     div.innerHTML = table(def)
                 }
             })
-            function table(def){
-                var local = def.region
-                var type = def.product
-                var arr = []
+
+            function table(def) {
                 var txt = ''
+                var rule = ''
+                // 根据参数生成判断等式
+                for (const key in def) {
+                    if (def.hasOwnProperty(key)) {
+                        const element = def[key];
+                        if (element !== 'all') {
+                            rule += `element['${key}'] === def['${key}']&&`
+                        }
+                    }
+                }
+                rule = rule.slice(0, -2)
+                console.log(rule)
                 sourceData.forEach(element => {
-                    if(element.region === local || local==='all' && element.product === type || type==='all'){
-                        txt += '<tr><td>'+element.product+'</td><td>'+element.region+'</td>'
+                    // 执行字符串等式
+                    if (eval(rule)) {
+                        txt += '<tr><td>' + element.product + '</td><td>' + element.region + '</td>'
                         element.sale.forEach(element => {
-                            txt +='<td>' + element + '</td>'
+                            txt += '<td>' + element + '</td>'
                         });
                         txt += '</tr>'
                     }
-                });
+                })
                 return `<table>
                             <tr>
                                 <th>商品</th>
@@ -125,7 +144,7 @@
                                 <th>12月</th>
                             </tr>
                         ${txt}
-                </table>`
+                    </table>`
             }
         })();
     </script>
