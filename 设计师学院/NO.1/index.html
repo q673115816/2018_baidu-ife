@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        /* 屏幕居中 */
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        /* 按钮样式 */
+        .box button {
+            display: block;
+            margin: 0 auto;
+            width: 100px;
+            height: 36px;
+            margin-top: 50px;
+            border: 1px solid #eee;
+            padding: none;
+            outline: none;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
+        }
+        /* 字体渐变 */
+        .contain {
+            color: #000;
+            font-size: 96px;
+            transition: all 1s linear;
+        }
+        /* 按钮点击 */
+        .box button:active{
+            background-color: #ace;
+        }
+        /* 下划线 */
+        .contain em {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 5px;
+            width: 0;
+            height: 10px;
+            background: #ace;
+            transition: all 1s linear;
+        }
+        /* 变化后的样式 */
+        .contain.show {
+            color: #ace;
+        }
+        /* 变化后的样式 */
+        .contain.show em {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div class="contain">
+                <span>前端学院</span>
+                <em></em>
+            </div>
+            <button>切换样式</button>
+        </div>
+    </div>
+    <script>
+        (function(){
+            var btn = document.querySelector('button');
+            var contain = document.querySelector('.contain');
+            // 切换类
+            btn.addEventListener('click',function(){
+                contain.classList.toggle('show')
+            })
+        })()
+    </script>
+</body>
+</html>
