@@ -9,7 +9,6 @@
         * {
             margin: 0;
             padding: 0;
-            list-style: none;
         }
 
         body {
@@ -30,8 +29,9 @@
             height: 400px;
             /* 转换为真3d */
             transform-style:preserve-3d;
+            list-style: none;
         }
-        
+
         li {
             position: absolute;
             width: 400px;
@@ -65,12 +65,12 @@
             transform-origin: bottom;
             transform: translateZ(-200px) rotateX(-90deg);
         }
-        
+        /* hover动作 */
         .box:hover ul {
             animation: roll 6s linear;
             animation-iteration-count: infinite;
         }
-
+        /* 动画 */
         @keyframes roll{
             to {
                 transform: rotateY(360deg);
