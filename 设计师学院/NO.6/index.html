@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .thumbnail {
+            position: fixed;
+            display: flex;
+            bottom: 10%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .thumbnail li {
+            position: relative;
+            margin: 0 20px;
+            width: 15%;
+            opacity: 0.8;
+            transition: all 0.8s;
+        }
+        .thumbnail a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .thumbnail a::before {
+            content: '';
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: all 0.8s;
+        }
+        .thumbnail li:hover a::before {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+
+
+
+        .list {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .list li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -5;
+        }
+
+        :target {
+            z-index: 5!important;
+        }
+
+        #img1 {
+            z-index: 0;
+        }
+        #img2 {
+            z-index: -1;
+        }
+        #img3 {
+            z-index: -2;
+        }
+        #img4 {
+            z-index: -3;
+        }
+        #img5 {
+            z-index: -4;
+        }
+
+        @keyframes one {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        #img1:target {
+            animation: one 0.5s ease-out forwards;
+        }
+
+
+        @keyframes two {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        #img2:target {
+            animation: two 0.5s ease-out forwards;
+        }
+
+
+        @keyframes three {
+            0% {
+                transform: scale(0.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        #img3:target {
+            animation: three 0.5s ease-in forwards;
+        }
+
+
+        @keyframes four {
+            0% {
+                transform: scale(2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        #img4:target {
+            animation: four 0.5s ease-in-out forwards;
+        }
+
+        @keyframes five {
+            0% {
+                transform: rotate(-360deg) scale(0.1);
+            }
+            100% {
+                transform: rotate(0) scale(1);
+            }
+        }
+        #img5:target {
+            animation: five 0.5s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box">
+            <ul class="list">
+                <li id="img1"><img src="./img1.jpg" alt=""></li>
+                <li id="img2"><img src="./img2.jpg" alt=""></li>
+                <li id="img3"><img src="./img3.jpg" alt=""></li>
+                <li id="img4"><img src="./img4.jpg" alt=""></li>
+                <li id="img5"><img src="./img5.jpg" alt=""></li>
+            </ul>
+            <ul class="thumbnail">
+                <li><a href="#img1"><img src="./img1.jpg" alt=""></a></li>
+                <li><a href="#img2"><img src="./img2.jpg" alt=""></a></li>
+                <li><a href="#img3"><img src="./img3.jpg" alt=""></a></li>
+                <li><a href="#img4"><img src="./img4.jpg" alt=""></a></li>
+                <li><a href="#img5"><img src="./img5.jpg" alt=""></a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</body>
+</html>

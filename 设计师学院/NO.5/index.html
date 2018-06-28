@@ -30,6 +30,9 @@
             /* 转换为真3d */
             transform-style:preserve-3d;
             list-style: none;
+            /* 绑定动画，平时在暂停，触发运行 */
+            animation: roll 6s linear infinite;
+            animation-play-state: paused;
         }
 
         li {
@@ -67,8 +70,7 @@
         }
         /* hover动作 */
         .box:hover ul {
-            animation: roll 6s linear;
-            animation-iteration-count: infinite;
+            animation-play-state: running;
         }
         /* 动画 */
         @keyframes roll{
