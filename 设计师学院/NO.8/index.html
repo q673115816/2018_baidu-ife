@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #ace;
+        }
+        .wrap {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<div class="wrap"></div>
+
+<body>
+    <script src="./lottie.min.js"></script>
+    <script>
+        var wrap = document.querySelector('.wrap');
+        lottie.loadAnimation({
+       container: wrap,   //包含动画的DOM元素
+       renderer: 'svg',  
+       loop: true, 
+       autoplay: true, 
+       path: './data.json',   //动画的路径
+ })
+    </script>
+</body>
+
+</html>

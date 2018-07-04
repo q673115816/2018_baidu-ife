@@ -280,6 +280,7 @@ aside {
     border-right: 1px solid #e6e9ec;
 }
 
+/* https://msdn.microsoft.com/library/hh772034%28v=vs.85%29.aspx */
 .contain nav,
 .main-contain,
 aside {
