@@ -279,10 +279,30 @@ aside {
     overflow: auto;
     border-right: 1px solid #e6e9ec;
 }
+
+.contain nav,
+.main-contain,
+aside {
+    -ms-scroll-chaining: chained;
+    -ms-overflow-style: none;
+    -ms-content-zooming: zoom;
+    -ms-scroll-rails: none;
+    -ms-content-zoom-limit-min: 100%;
+    -ms-content-zoom-limit-max: 500%;
+    -ms-scroll-snap-type: proximity;
+    -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+    -ms-overflow-style: none;
+}
+
 .main-contain::-webkit-scrollbar,
 aside::-webkit-scrollbar {
+display: none;
+}
+
+aside::-o-scrollbar {
     display: none;
 }
+
 
 .search-wrap {
     height: 70px;
@@ -383,13 +403,11 @@ aside li.active h4::before {
 }
 
 .main-header button {
-    all: unset;
+    border: none;
     width: 36px;
     height: 32px;
     line-height: 32px;
-    float: left;
-    flex: 1;
-    border: none;
+    flex: auto;
     background-image: linear-gradient(0deg, 
 		#f1f3f7 0%, 
         #ffffff 100%);
