@@ -4,11 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./index.html",
+    "build": "parcel build index.html NODE_ENV=production --public-url"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "node-sass": "^4.9.0"
+  },
+  "dependencies": {
+    "san": "^3.6.2"
   }
 }
