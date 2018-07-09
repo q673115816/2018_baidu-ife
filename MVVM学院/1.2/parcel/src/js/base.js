@@ -1,7 +1,8 @@
 setTimeout(_=>{
     console.log('Hello World')
 },1000)
-
+const someBody = '666'
+console.log(someBody)
 class Person {
     constructor(name){
         this.name = name

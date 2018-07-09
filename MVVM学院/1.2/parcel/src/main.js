@@ -1,6 +1,6 @@
 import san from "san";
 import './scss/style.scss'
-import main from "./template/main.san";
+import './css/testcss.css'
 import {
     Gender
 } from './js/base.js'
