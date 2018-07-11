@@ -1,19 +1,15 @@
-import _ from 'lodash'
-import './style.css'
-import Icon from './icon.png'
+import san from "san";
+import { router } from "san-router";
+import San from "./app.san";
 
-const a = 111;
-console.log(a);
+console.log('hello webpack  San')
 
-function component(){
-    let element = document.createElement('div')
-    element.innerHTML = _.join(['Hello','Webpack'],' ')
-    element.classList.add('hello')
+router.add({rule: '/',Component:San, target: '#app'})
 
-    var MyIcon = new Image()
-    MyIcon.src = Icon
-    element.appendChild(MyIcon)
-    return element
-}
+router.start()
 
-document.body.appendChild(component())
+var MyApp = san.defineComponent()
+
+var myApp = new MyApp()
+
+myApp.attach(document.body)

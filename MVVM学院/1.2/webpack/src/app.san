@@ -1,0 +1,34 @@
+<template>
+    <div>
+        <div class="hello">hello {{msg}}</div>
+        <ul>
+        <li s-for="item in list">{{item}}</li>
+        </ul>
+        <p>Hello {{name}}</p>
+        <div>
+        <input value="{= name =}" placeholder="please input">
+        'hello {{name}}'
+        </div>
+    <div>
+</template>
+
+<script>
+export default {
+    initData: function(){
+        return {
+            name: 'San',
+            msg: 'world'
+        }
+    },
+    attached: function(){
+        this.data.set('list',['san','er','esui','etpl','esl'])
+    }
+}
+
+</script>
+
+<style>
+    .hello {
+        color: red
+    }
+</style>
