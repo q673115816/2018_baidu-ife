@@ -1,0 +1,39 @@
+<template>
+    <div>
+        <div class='group'>
+        <input type="text" value='{= name =}'>
+        <input type="number" value='{= age =}'>
+        <input type="text" value='{= contain =}'>
+        </div>
+        <p>信息：<button on-click="clear">移除信息</button></p>
+        <p><span>姓名：</span><span>{{ name }}</span></p>
+        <p><span>年龄：</span><span>{{ age }}</span></p>
+        <p><span>简介：</span><span>{{ contain }}</span></p>
+    <div>
+</template>
+
+
+<script>
+
+export default {
+    initData(){
+        return {
+            name: '',
+            age: '',
+            contain: ''
+        }
+    },
+    clear(data){
+        this.data.set('name','')
+        this.data.set('age','')
+        this.data.set('contain','')
+    }
+}
+</script>
+
+
+<style>
+    .group {
+    }
+
+</style>
