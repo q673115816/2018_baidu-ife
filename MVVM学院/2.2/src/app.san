@@ -1,0 +1,29 @@
+<template>
+    <div>
+        <h1>循环</h1>
+        <button>添加</button>
+        <ul>
+            <li>666</li>
+            <li>666</li>
+            <li>666</li>
+            <li>666</li>
+            <li>666</li>
+            <li>666</li>
+        </ul>
+    </div>
+</template>
+
+<script>
+    export default {
+        
+        initData(){
+            return {
+                list:[]
+            }
+        }
+    }
+
+</script>
+
+<style >
+</style>
