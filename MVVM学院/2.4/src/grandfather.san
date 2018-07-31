@@ -1,6 +1,6 @@
 <template>
     <div class='grandfather'>
-        <ui-father>
+        <ui-father value={=value=}>
         </ui-father>
         <span>
             我是更高层父组件：

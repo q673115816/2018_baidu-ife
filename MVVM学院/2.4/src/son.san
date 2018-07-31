@@ -15,11 +15,6 @@
 
 <script>
     export default {
-        initData(){
-            return {
-                value:''
-            }
-        },
         submit(){
             var value = this.data.get('value')
             this.dispatch('UI:son-submit',value)

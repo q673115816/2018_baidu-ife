@@ -1,11 +1,12 @@
 <template>
 <div class='father'>
-    <ui-son>
+    <ui-son value={=value=}>
     </ui-son>
     <p>
         <span>
         我是父组件：
         </span>
+        <input type='text' value="{=value=}">
         <span>
         {{value}}
         </span>
@@ -16,11 +17,6 @@
 <script>
     import son from './son.san'
     export default {
-        initData(){
-            return {
-                value:'静静等待用户输入'
-            }
-        },
         components: {
             'ui-son': son
         },
