@@ -1,0 +1,21 @@
+<template>
+<input 
+type='checkbox' 
+checked='{=checked=}'
+disabled='{{disabled}}'>
+</template>
+
+<script>
+export default {
+    initData(){
+        return {
+            checked: false,
+            disabled: false
+        }
+    }
+}
+
+</script>
+
+<style>
+</style>

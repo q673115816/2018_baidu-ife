@@ -1,0 +1,65 @@
+<template>
+<input 
+type='text' 
+value='{=value=}' 
+placeholder='{{placehold}}' 
+disabled='{{disabled}}'
+readonly='{{readonly}}'
+on-input='input',
+on-focus='focus',
+on-blur='blur'>
+</template>
+
+<script>
+export default {
+    initData(){
+        return {
+            value: '',
+            placehold: '请输入文字',
+            disabled: false,
+            readonly: false
+        }
+    },
+    input(){
+        this.fire('input',this.data.get('value'))
+    },
+    focus(){
+        this.fire('focus',this.data.get('value'))
+    },
+    blur(){
+        this.fire('blur',this.data.get('value'))
+    }
+}
+
+</script>
+
+<style lang='sass' ccoped>
+    input {
+        outline: none;
+        padding: 8px;
+        font-size: 12px;
+        border:1px solid #ccc;
+        color: #ccc;
+        &:hover {
+            border-color: #999;
+        }
+        &:focus {
+            color: #999
+        }
+        &::-webkit-input-placeholder { /* WebKit browsers */
+    　　color:#999;
+    　　}
+
+    　　&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    　　color:#999;
+    　　}
+
+    　　&::-moz-placeholder { /* Mozilla Firefox 19+ */
+    　　color:#999;
+    　　}
+    　　&:-ms-input-placeholder { /* Internet Explorer 10+ */
+    　　color:#999;
+    　　}
+    }
+
+</style>

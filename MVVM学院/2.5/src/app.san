@@ -1,0 +1,55 @@
+<template>
+    <div>
+        <h1>
+        hello {{value}}!
+        </h1>
+            <san-input
+        value="{{value}}"
+    />
+
+    <san-input
+        placehold="请输入用户名"
+        value="{{value}}"
+    />
+
+    <san-input
+        on-input="handleInput($event)"
+        placehold="请输入用户名"
+        value="{=value=}"
+    />
+
+    <san-checkbox checked="{=checked=}">
+        是否开启
+    </san-checkbox>
+
+    <san-checkbox
+        on-change="handleChange"
+        checked="{=dynimicValueTrue=}"
+    >
+    是否同意协议
+    </san-checkbox>
+    </div>
+
+</template>
+
+<script>
+import input from './input.san'
+import check from './check.san'
+export default {
+    components: {
+        'san-input': input,
+        'san-checkbox': check
+    },
+    initData(){
+        return {
+            value: ''
+        }
+    },
+    handleInput(inputMsg){
+        console.log(inputMsg)
+    }
+}
+</script>
+
+<style>
+</style>
