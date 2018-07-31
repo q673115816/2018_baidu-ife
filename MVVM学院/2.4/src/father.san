@@ -1,6 +1,7 @@
 <template>
 <div class='father'>
-    <ui-son value={=value=}>
+
+    <ui-son value={{value}}>
     </ui-son>
     <p>
         <span>
@@ -20,6 +21,7 @@
         components: {
             'ui-son': son
         },
+        // 子类传递数据再向上一层传递
         messages: {
             'UI:son-submit':function(arg) {
                 var value = arg.value
