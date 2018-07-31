@@ -1,29 +1,106 @@
 <template>
     <div>
         <h1>循环</h1>
-        <button>添加</button>
-        <ul>
-            <li>666</li>
-            <li>666</li>
-            <li>666</li>
-            <li>666</li>
-            <li>666</li>
-            <li>666</li>
-        </ul>
+        <button on-click='addItem'>添加</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        姓名
+                    </th>
+                    <th>
+                        审核状态
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr s-for="item,index in list">
+                    <td>
+                        {{item.name}}
+                    </td>
+                    <td>
+                        {{item.state | confirmstate}}
+                    </td>
+                    <td>
+                        <button s-if='item.state!==0' on-click='removeItem(index)'>删除</button>
+                        <button s-else='item.state===0' on-click='checkItem(index)'>审核</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
+//  0 待审核
+//  1 合格
+//  2 不合格
     export default {
-        
+        // 初始化数据
         initData(){
             return {
-                list:[]
+                index: 0,
+                list: [{
+                    name: 'name',
+                    state: 0,
+                }]
+            }
+        },
+        // 过滤器注册
+        filters:{
+            confirmstate(state){
+                switch (state) {
+                    case 1:
+                    return '合格'
+                    break
+                    case 2:
+                    return '不合格'
+                    break
+                    default:
+                    return '未审核'
+                }
+            }
+        },
+        // 获取随机数确定添加的状态
+        random(){
+            return Math.floor(Math.random()*3);
+        },
+        // 添加数据
+        addItem() {
+            this.data.set('index',this.data.get('index') + 1)
+            this.data.push('list', {name: 'name' + this.data.get('index'),state:this.random()} )
+        },
+        // 删除数据
+        removeItem(index){
+            this.data.removeAt('list',index)
+        },
+        // 判断事件
+        checkItem(i){
+            var r = confirm('是否通过')
+            if(r == true){
+                console.log(i)
+                console.log(this.data.get('list[0]'))
+                this.data.set(`list[${i}].state`,1)
+            }else{
+                this.data.set(`list[${i}].state`,2)
             }
         }
     }
 
 </script>
 
-<style >
+<style lang="sass" scoped>
+    table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+        td,th {
+            padding: 4px 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+    }
+
 </style>
