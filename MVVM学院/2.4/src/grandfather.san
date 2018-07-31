@@ -1,0 +1,36 @@
+<template>
+    <div class='grandfather'>
+        <ui-father>
+        </ui-father>
+        <span>
+            我是更高层父组件：
+        </span>
+        <span>
+            {{value}}
+        </span>
+    </div>
+</template>
+
+<script>
+import father from './father.san'
+export default {
+    initData(){
+        return {
+            value: '静静等待用户输入'
+        }
+    },
+    components:{
+        'ui-father': father
+    },
+    messages: {
+        'UI:son-submit':function(arg) {
+            var value = arg.value
+            this.data.set('value',value)
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .name {
+            width: 100px;
+            height: 100px;
+            background: #666;
+            transition: all 0.8s;
+        }
+        .newname {
+            width: 200px;
+            height: 200px;
+            background: #ace;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+<script src="https://unpkg.com/san@latest"></script>
+<script>
+    var myApp = san.defineComponent({
+        template: `
+        <main>
+            <div style="background:red;width:100px;height:100px;" 
+                 on-click='changeStyle($event)'>操作样式</div>
+            <div class='name' 
+                 on-click='changeClass($event)'>操作类</div>
+        </main>
+        `,
+        changeStyle(e){
+            console.log(e)
+            e.target.style = 'background:blue;width:100px;height:100px;';
+        }   ,
+        changeClass(e){
+            console.log(e)
+            e.target.classList.toggle('newname')
+        }
+    })
+    var myapp = new myApp()
+    myapp.attach(document.querySelector('#app'))
+</script>
+</body>
+</html>

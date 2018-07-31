@@ -1,0 +1,41 @@
+<template>
+<div class='father'>
+    <ui-son>
+    </ui-son>
+    <p>
+        <span>
+        我是父组件：
+        </span>
+        <span>
+        {{value}}
+        </span>
+    </p>
+</div>
+</template>
+
+<script>
+    import son from './son.san'
+    export default {
+        initData(){
+            return {
+                value:'静静等待用户输入'
+            }
+        },
+        components: {
+            'ui-son': son
+        },
+        messages: {
+            'UI:son-submit':function(arg) {
+                var value = arg.value
+                this.data.set('value',value)
+                this.dispatch('UI:son-submit',value)
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .father > p {
+        color: green
+    }
+</style>

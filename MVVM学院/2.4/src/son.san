@@ -1,0 +1,32 @@
+<template>
+    <div class='son'>
+        <span>
+        子组件：
+        </span>
+        <input type='text' value='{= value =}'>
+        <button type='button' on-click='submit'>
+        通知父组件
+        </button>
+        <span>
+        {{value}}
+        </span>
+    </div>
+</template>
+
+<script>
+    export default {
+        initData(){
+            return {
+                value:''
+            }
+        },
+        submit(){
+            var value = this.data.get('value')
+            this.dispatch('UI:son-submit',value)
+        }
+    }
+</script>
+
+<style>
+
+</style>
