@@ -46,20 +46,18 @@ export default {
         &:focus {
             color: #999
         }
-        &::-webkit-input-placeholder { /* WebKit browsers */
-    　　color:#999;
-    　　}
-
-    　　&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    　　color:#999;
-    　　}
-
-    　　&::-moz-placeholder { /* Mozilla Firefox 19+ */
-    　　color:#999;
-    　　}
-    　　&:-ms-input-placeholder { /* Internet Explorer 10+ */
-    　　color:#999;
-    　　}
+        &::-webkit-input-placeholder{
+            color:#ccc;
+        }
+        &::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:#ccc;
+        }
+        &:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:#ccc;
+        }
+        &:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:#ccc;
+        }
     }
 
 </style>

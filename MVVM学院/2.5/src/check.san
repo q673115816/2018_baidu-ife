@@ -1,8 +1,13 @@
 <template>
-<input 
-type='checkbox' 
-checked='{=checked=}'
-disabled='{{disabled}}'>
+
+<label>
+    <input 
+    type='checkbox' 
+    checked='{=checked=}'
+    disabled='{{disabled}}'
+    onchange='{{change}}'>
+    {{checked?trueValue:falseValue}}
+</label>
 </template>
 
 <script>
@@ -10,7 +15,18 @@ export default {
     initData(){
         return {
             checked: false,
-            disabled: false
+            disabled: false,
+            trueValue:'',
+            falseValue: '',
+            indeterminate: false
+        }
+    },
+    change(){
+        this.fire('change',this.data.get('value'))
+    },
+    inited(){
+        if(this.data.get('indeterminate')) {
+            
         }
     }
 }
