@@ -1,12 +1,14 @@
 <template>
 
 <label>
+<slot></slot>
     <input 
     type='checkbox' 
     checked='{=checked=}'
     disabled='{{disabled}}'
-    onchange='{{change}}'>
-    {{checked?trueValue:falseValue}}
+    indeterminate='{{indeterminate}}'
+    on-change='change'>
+    <span>{{checked?trueValue:falseValue}}</span>
 </label>
 </template>
 
@@ -17,16 +19,17 @@ export default {
             checked: false,
             disabled: false,
             trueValue:'',
-            falseValue: '',
-            indeterminate: false
+            falseValue: ''
         }
     },
     change(){
-        this.fire('change',this.data.get('value'))
+        this.fire('change',this.data.get('checked'))
     },
     inited(){
-        if(this.data.get('indeterminate')) {
-            
+        var indeterminate = this.data.get('indeterminate')
+        if(indeterminate==='false'){
+            indeterminate = ''
+            this.data.set('indeterminate',indeterminate)
         }
     }
 }

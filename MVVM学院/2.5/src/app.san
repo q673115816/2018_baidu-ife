@@ -18,13 +18,14 @@
         value="{=value=}"
     />
 
-    <san-checkbox checked="{=checked=}">
+    <san-checkbox checked="{=checked=}" trueValue='是' disabled>
         是否开启
     </san-checkbox>
 
     <san-checkbox
         on-change="handleChange"
         checked="{=dynimicValueTrue=}"
+        falseValue='否'
     >
     是否同意协议
     </san-checkbox>
@@ -42,11 +43,15 @@ export default {
     },
     initData(){
         return {
-            value: ''
+            value: '',
+            dynimicValueTrue: true
         }
     },
     handleInput(inputMsg){
         console.log(inputMsg)
+    },
+    handleChange(result){
+        console.log(result)
     }
 }
 </script>
