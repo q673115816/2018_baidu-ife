@@ -1,0 +1,21 @@
+<template>
+    <div class='box-wrap'>
+        <div class='box'>
+            <header>
+                <h2>
+                <slot name='itemtitle'><slot>
+                </h2>
+            </header>
+        </div>
+    </div>
+
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+</style>

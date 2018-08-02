@@ -1,0 +1,30 @@
+
+
+<template>
+    <div class='main'>
+        <task-menu s-for='item in list' itemtitle='item.title'>
+        </task-menu>
+    </div>
+</template>
+
+<script>
+import task from "./task.san";
+
+export default {
+    components: {
+        'task-menu': task
+    },
+    initData() {
+        return {
+            list:[
+                {
+                    title:'标题'
+                }
+            ]
+        }
+    }
+}
+</script>
+
+<style>
+</style>
