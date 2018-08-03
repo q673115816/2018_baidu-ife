@@ -1,0 +1,53 @@
+<template>
+<div>
+  <button on-click="toggle">TOGGLE</button>
+  <span s-if="show" s-transition="hook">
+    Transition Layer
+  </span>
+</div>
+</template>
+
+<script>
+export default {
+  initData() {
+    return {
+        show: true
+        };
+  },
+  toggle() {
+    this.data.set('show',!this.data.get('show'));
+  },
+  hook: {
+        /* your answer */
+        enter: function (el, done) {
+            el.classList = 'before-enter'
+            console.log(window.getComputedStyle(el).width)
+            el.classList.add('enter')
+            setTimeout(function(){
+                done()
+            },500)
+        },
+
+        leave: function (el, done) {
+            el.classList=('leave')
+            setTimeout(function(){
+                done()
+            },500)
+        }
+    }
+}
+</script>
+
+<style>
+.enter, .leave {
+  transition: all .5s;
+}
+
+.before-enter, .leave {
+  opacity: 0;
+}
+
+.enter, .before-leave {
+  opacity: 1;
+}
+</style>
