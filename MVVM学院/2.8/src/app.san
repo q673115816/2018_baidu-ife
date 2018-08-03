@@ -1,0 +1,40 @@
+<template>
+<div class='box'>
+<h4>
+expansion panel
+<span class='icon-arrow'>
+
+</span>
+</h4>
+{{text}}
+</div>
+</template>
+
+<script>
+export default {
+    initData(){
+        return {
+            text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam laboriosam, labore modi mollitia incidunt quam dignissimos commodi rerum porro totam numquam, natus deserunt, quos non obcaecati aliquid voluptatum perspiciatis quisquam!'
+        }
+    }
+}
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+.box {
+    margin: 100px auto;
+    padding: 20px;
+    width: 600px;
+    border: 1px solid #ccc;
+
+}
+.box h4 {
+    height: 36px;
+    line-height: 36px;
+}
+
+</style>
