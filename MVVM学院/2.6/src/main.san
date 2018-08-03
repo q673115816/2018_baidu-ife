@@ -2,7 +2,26 @@
 
 <template>
     <div class='main'>
-        <task-menu s-for='item in list' itemtitle='item.title'>
+        <task-menu s-for='item,index in list'>
+        <h2 slot='rank'>
+            任务{{index + 1}}
+        </h2>
+        <span slot='title'>
+        {{item.title}}
+        </span>
+        <span slot='text'>
+        {{item.text}}
+        </span>
+        <span slot='time'>
+        {{item.time}}
+        </span>
+        </task-menu>
+        <task-menu 
+        s-for='item,index in list' 
+        rank='{{index + 1}}' 
+        title='{{item.title}}' 
+        text='{{item.text}}'
+        time='{{item.time}}'>
         </task-menu>
     </div>
 </template>
@@ -18,13 +37,33 @@ export default {
         return {
             list:[
                 {
-                    title:'标题'
-                }
+                    title:'插槽',
+                    text:'xxxxxx',
+                    time:new Date()
+                },
+                {
+                    title:'插槽',
+                    text:'xxxxxx',
+                    time:new Date()
+                },
+                {
+                    title:'插槽',
+                    text:'xxxxxx',
+                    time:new Date()
+                },
             ]
         }
     }
 }
 </script>
 
-<style>
+<style lang='sass'>
+ .main {
+     margin: 0 auto;
+     width: 1200px;
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
+
+ }
 </style>
