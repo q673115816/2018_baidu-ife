@@ -4,7 +4,7 @@
     <div class='main'>
         <task-menu s-for='item,index in list'>
         <h2 slot='rank'>
-            任务{{index + 1}}
+            <em>任务{{index + 1}}</em>
         </h2>
         <span slot='title'>
         {{item.title}}
