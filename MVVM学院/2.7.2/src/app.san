@@ -1,0 +1,56 @@
+<template>
+<ul>
+    <li s-for="item,index in list">
+    <h4 on-click='toggle'>
+        {{item.title + (index+1)}}
+    </h4>
+    <p s-if='show' s-transition="transition('slide')">
+    {{text}}
+    </p>
+    </li>
+</ul>
+
+</template>
+
+<script>
+
+import { transition } from "san-transition";
+import './style.css'
+export default {
+    initData(){
+        return {
+            show: true,
+            list: [
+                {
+                    title:'查看内容'
+                },
+            ],
+            text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam laboriosam, labore modi mollitia incidunt quam dignissimos commodi rerum porro totam numquam, natus deserunt, quos non obcaecati aliquid voluptatum perspiciatis quisquam!'
+        }
+    },
+    toggle(){
+        this.data.set('show',!this.data.get('show'))
+    },
+    transition,
+}
+
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+li {
+    width: 300px;
+    list-style: none;
+    border: 1px solid #ace;
+    overflow: hidden;
+}
+
+li > p {
+    overflow:auto;
+    height: 100px;
+}
+
+</style>
