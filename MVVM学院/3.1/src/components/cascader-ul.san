@@ -1,0 +1,42 @@
+<template>
+<ul class='cascader-ul'>
+    <li s-for='item in options'>
+        <a href='javascript:;'>{{item.label}}</a>
+    </li>
+</ul>
+</template>
+
+<script>
+export default {
+    components: {
+        'cascader-ul': 'self'
+    },
+
+}
+</script>
+
+<style lang='sass'>
+.cascader-ul {
+    float: left;
+    margin-top: 40px;
+    padding: 10px 0;
+    width: 100px;
+    background: #fff;
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.4);
+    li {
+        height: 32px;
+        line-height: 32px;
+        a {
+            display: block;
+            padding: 0 14px;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        &:hover {
+            background: #eee;
+        }
+    }
+}
+
+</style>
