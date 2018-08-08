@@ -1,9 +1,9 @@
 <template>
-<ul class='cascader-ul'>
-    <li s-for='item in options'>
-        <a href='javascript:;'>{{item.label}}</a>
-    </li>
-</ul>
+    <ul class='cascader-ul' s-if='{{!!options}}'>
+        <li s-for='item in options'>
+            <a href='javascript:;' on-mouseenter='hovered(item)' on-click='checked(item)'>{{item.label}}</a>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -11,19 +11,27 @@ export default {
     components: {
         'cascader-ul': 'self'
     },
-
+    hovered(item){
+        console.log('hover')
+    },
+    checked(item){
+        console.log('checked')
+        if(!!item.children){
+            console.log(this.parent)
+        }
+    }
 }
 </script>
 
 <style lang='sass'>
 .cascader-ul {
+    list-style: none;
     float: left;
-    margin-top: 40px;
     padding: 10px 0;
-    width: 100px;
+    height: 160px;
     background: #fff;
-    box-shadow: 0 0 10px 1px rgba(0,0,0,0.4);
     li {
+        width: 120px;
         height: 32px;
         line-height: 32px;
         a {
