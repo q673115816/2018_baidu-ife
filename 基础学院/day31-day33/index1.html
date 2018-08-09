@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="region-radio-wrapper"></div>
+    <div id="product-radio-wrapper"></div>
+    <div id="result"></div>
+    <SCRipt>
+        let sourceData = [{
+            product: "手机",
+            region: "华东",
+            sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+        }, {
+            product: "手机",
+            region: "华北",
+            sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+        }, {
+            product: "手机",
+            region: "华南",
+            sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+        }, {
+            product: "笔记本",
+            region: "华东",
+            sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+        }, {
+            product: "笔记本",
+            region: "华北",
+            sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+        }, {
+            product: "笔记本",
+            region: "华南",
+            sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+        }, {
+            product: "智能音箱",
+            region: "华东",
+            sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+        }, {
+            product: "智能音箱",
+            region: "华北",
+            sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+        }, {
+            product: "智能音箱",
+            region: "华南",
+            sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+        }]
+        // 筛选关键词
+        function spliceValue(key,obj){
+            var i = 0;
+            var result = []
+            var arr = []
+            obj.forEach(e=>{
+                if(!arr.includes(e[key])){
+                    arr.push(e[key])
+                    result.push({
+                        value: ++i,
+                        text: e[key]
+                    })
+                }
+            })
+            return result
+        }
+        function returnTable(filter){
+            return `<table>
+                            <tr>
+                                <th>商品</th>
+                                <th>地区</th>
+                                <th>1月</th>
+                                <th>2月</th>
+                                <th>3月</th>
+                                <th>4月</th>
+                                <th>5月</th>
+                                <th>6月</th>
+                                <th>7月</th>
+                                <th>8月</th>
+                                <th>9月</th>
+                                <th>10月</th>
+                                <th>11月</th>
+                                <th>12月</th>
+                            </tr>
+                            ${returnTbody()}
+                            
+                    </table>`
+
+            function returnTbody(filter){
+                var txt = '<tr>'
+                txt += '</tr>'
+                return txt
+            }
+        }
+        document.querySelector('#result').innerHTML = returnTable()
+
+        // 生成选择
+        function CheckBox(dom, obj,cof) {
+            var el = typeof dom === 'string' && !!document.querySelector(dom) && document.querySelector(dom)
+            if (!el) return
+            var text = cof.text || ''
+            var name = cof.name || ''
+            el.innerHTML +=
+                `
+            <label>全部${text}<input type="checkbox" name='${name}' checked data-type='all'></label>
+            ${obj.map(element => {
+                return '<label>'+element.text+'<input type="checkbox" checked name="'+ name +'" data-type="'+element.value+'"></label>'
+            }).join('')}
+            `
+            var all = el.querySelector('[data-type="all"]')
+            var ck = el.querySelectorAll('input:not([data-type="all"])')
+            var checkArr = {}
+            el.addEventListener('change', function (e) {
+                var e = e || window.event
+                var t = e.target
+                var haschecked = Array.prototype.some.call(ck,e=>{
+                    return e.checked == 1
+                })
+                var allChecked = Array.prototype.every.call(ck,e=>{
+                    return e.checked == 1
+                })
+                if (t === all) {
+                    ck.forEach(e => {
+                        e.checked = t.checked
+                    })
+                    if(t.checked==false) {
+                        ck[0].checked = 1
+                    }
+                } else {
+                    if(!haschecked) {
+                        t.checked = 1
+                    }
+                    all.checked = allChecked
+                }
+
+
+
+            })
+        }
+        CheckBox(
+            '#region-radio-wrapper', 
+            spliceValue('region',sourceData),
+        {
+            text: '地区',
+            name: 'local'
+        })
+        CheckBox(
+            '#product-radio-wrapper', 
+            spliceValue('product',sourceData),
+        {
+            text: '种类',
+            name: 'type'
+        })
+    </SCRipt>
+</body>
+
+</html>
