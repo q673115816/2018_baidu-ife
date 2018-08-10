@@ -51,7 +51,7 @@
             sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
         }]
         // 筛选关键词
-        function spliceValue(key,obj){
+        function spliceValue(key,obj,filter){
             var i = 0;
             var result = []
             var arr = []
@@ -66,6 +66,13 @@
             })
             return result
         }
+        function filter(){
+            return {
+                product: spliceValue('product',sourceData),
+                region: spliceValue('region',sourceData),
+            }
+        }
+        console.log(filter())
         function returnTable(filter){
             return `<table>
                             <tr>
@@ -84,12 +91,28 @@
                                 <th>11月</th>
                                 <th>12月</th>
                             </tr>
-                            ${returnTbody()}
+                            ${returnTbody(filter)}
                             
                     </table>`
 
             function returnTbody(filter){
+                var filter = filter || ''
                 var txt = '<tr>'
+                sourceData.forEach(e => {
+                    if(filter.product.includes(e.product) && filter.region.includes(e.region)) {
+                        txt += '<td>' 
+                        txt += e.product
+                        txt += '</td>'
+                        txt += '<td>' 
+                        txt += e.region
+                        txt += '</td>'
+                        e.sale.forEach(e=>{
+                            txt += '<td>' 
+                            txt += e
+                            txt += '</td>'
+                        })
+                    }
+                })
                 txt += '</tr>'
                 return txt
             }
