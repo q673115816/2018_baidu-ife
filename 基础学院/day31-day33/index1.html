@@ -51,12 +51,12 @@
             sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
         }]
         // 筛选关键词
-        function spliceValue(key,obj,filter){
+        function spliceValue(key, obj, filter) {
             var i = 0;
             var result = []
             var arr = []
-            obj.forEach(e=>{
-                if(!arr.includes(e[key])){
+            obj.forEach(e => {
+                if (!arr.includes(e[key])) {
                     arr.push(e[key])
                     result.push({
                         value: ++i,
@@ -64,17 +64,20 @@
                     })
                 }
             })
+            if (filter) {
+                return arr
+            }
             return result
         }
-        function filter(){
-            return {
-                product: spliceValue('product',sourceData),
-                region: spliceValue('region',sourceData),
-            }
+
+        _filter = {
+            product: spliceValue('product', sourceData, 'all'),
+            region: spliceValue('region', sourceData, 'all')
         }
-        console.log(filter())
-        function returnTable(filter){
-            return `<table>
+        console.log(_filter)
+
+        function returnTable(filter) {
+            return `<table style='width:100%;text-align:center;'>
                             <tr>
                                 <th>商品</th>
                                 <th>地区</th>
@@ -95,32 +98,35 @@
                             
                     </table>`
 
-            function returnTbody(filter){
-                var filter = filter || ''
-                var txt = '<tr>'
+            function returnTbody(filter) {
+                var filter = filter || _filter
+                var txt = ''
                 sourceData.forEach(e => {
-                    if(filter.product.includes(e.product) && filter.region.includes(e.region)) {
-                        txt += '<td>' 
+                console.log(filter)
+                    console.log(e)
+                    if (filter.product.includes(e.product) && filter.region.includes(e.region)) {
+                        txt += '<tr>'
+                        txt += '<td>'
                         txt += e.product
                         txt += '</td>'
-                        txt += '<td>' 
+                        txt += '<td>'
                         txt += e.region
                         txt += '</td>'
-                        e.sale.forEach(e=>{
-                            txt += '<td>' 
+                        e.sale.forEach(e => {
+                            txt += '<td>'
                             txt += e
                             txt += '</td>'
                         })
+                        txt += '</tr>'
                     }
                 })
-                txt += '</tr>'
                 return txt
             }
         }
         document.querySelector('#result').innerHTML = returnTable()
 
         // 生成选择
-        function CheckBox(dom, obj,cof) {
+        function CheckBox(dom, obj, cof) {
             var el = typeof dom === 'string' && !!document.querySelector(dom) && document.querySelector(dom)
             if (!el) return
             var text = cof.text || ''
@@ -138,44 +144,47 @@
             el.addEventListener('change', function (e) {
                 var e = e || window.event
                 var t = e.target
-                var haschecked = Array.prototype.some.call(ck,e=>{
+                var haschecked = Array.prototype.some.call(ck, e => {
                     return e.checked == 1
                 })
-                var allChecked = Array.prototype.every.call(ck,e=>{
+                var allChecked = Array.prototype.every.call(ck, e => {
                     return e.checked == 1
                 })
                 if (t === all) {
                     ck.forEach(e => {
                         e.checked = t.checked
+                        _filter[t.name] = spliceValue(t.name, sourceData, 'all')
                     })
-                    if(t.checked==false) {
+                    if (t.checked == false) {
                         ck[0].checked = 1
+                        console.dir(t)
+                        _filter[t.name] = spliceValue(t.name, sourceData, 'all')[0]
                     }
                 } else {
-                    if(!haschecked) {
+                    if (!haschecked) {
+                        return false;
                         t.checked = 1
                     }
+                    _filter[t.name].splice(t.dataSet())
                     all.checked = allChecked
                 }
-
+                document.querySelector('#result').innerHTML = returnTable()
 
 
             })
         }
         CheckBox(
-            '#region-radio-wrapper', 
-            spliceValue('region',sourceData),
-        {
-            text: '地区',
-            name: 'local'
-        })
+            '#region-radio-wrapper',
+            spliceValue('region', sourceData), {
+                text: '地区',
+                name: 'region'
+            })
         CheckBox(
-            '#product-radio-wrapper', 
-            spliceValue('product',sourceData),
-        {
-            text: '种类',
-            name: 'type'
-        })
+            '#product-radio-wrapper',
+            spliceValue('product', sourceData), {
+                text: '种类',
+                name: 'product'
+            })
     </SCRipt>
 </body>
 
