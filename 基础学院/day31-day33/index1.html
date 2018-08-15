@@ -100,18 +100,32 @@
 
             function returnTbody(filter) {
                 var filter = filter || _filter
+                var long = [filter.product.length,filter.region.length]
                 var txt = ''
-                sourceData.forEach(e => {
-                console.log(filter)
-                    console.log(e)
+                sourceData.forEach((e,i) => {
                     if (filter.product.includes(e.product) && filter.region.includes(e.region)) {
                         txt += '<tr>'
-                        txt += '<td>'
-                        txt += e.product
-                        txt += '</td>'
-                        txt += '<td>'
-                        txt += e.region
-                        txt += '</td>'
+
+                        if(long[0]<=1 && i == 0) {
+                            txt += '<td rowspan='+long[1]+'>'
+                            txt += e.product
+                            txt += '</td>'
+                        }else if(long[0] > 1) {
+                            txt += '<td>'
+                            txt += e.product
+                            txt += '</td>'
+                        }
+
+                        if(long[1]<=1&&i==0) {
+                            txt += '<td rowspan='+long[0]+'>'
+                            txt += e.region
+                            txt += '</td>'
+                        }else if(long[1]>1) {
+                            txt += '<td>'
+                            txt += e.region
+                            txt += '</td>'
+                        }
+
                         e.sale.forEach(e => {
                             txt += '<td>'
                             txt += e
@@ -135,7 +149,7 @@
                 `
             <label>全部${text}<input type="checkbox" name='${name}' checked data-type='all'></label>
             ${obj.map(element => {
-                return '<label>'+element.text+'<input type="checkbox" checked name="'+ name +'" data-type="'+element.value+'"></label>'
+                return '<label>'+element.text+'<input type="checkbox" checked name="'+ name +'" data-type="'+element.value+'" data-text="'+element.text+'"></label>'
             }).join('')}
             `
             var all = el.querySelector('[data-type="all"]')
@@ -157,15 +171,14 @@
                     })
                     if (t.checked == false) {
                         ck[0].checked = 1
-                        console.dir(t)
-                        _filter[t.name] = spliceValue(t.name, sourceData, 'all')[0]
+                        _filter[t.name] = [spliceValue(t.name, sourceData, 'all')[0]]
                     }
                 } else {
                     if (!haschecked) {
                         return false;
                         t.checked = 1
                     }
-                    _filter[t.name].splice(t.dataSet())
+                    t.checked ? _filter[t.name].splice(t.dataset.type - 1,0,t.dataset.text): _filter[t.name].splice(t.dataset.type - 1,1)
                     all.checked = allChecked
                 }
                 document.querySelector('#result').innerHTML = returnTable()
