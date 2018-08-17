@@ -37,11 +37,40 @@ let sourceData = [{
     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
 }]
 
-function bar(){
+
+
+;(function (){
     var data = sourceData[0].sale
     function maxData(data){
         return Math.max(...data)
     }
     var max = maxData(data)
-    var svg = document.createElementNS('http://www.w3.org/2000/svg','circle')
-}
+    var svg = document.createElementNS('http://www.w3.org/2000/svg','svg')
+    svg.setAttribute('width','900')
+    svg.setAttribute('height','500')
+    var rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x', 0);
+    rect.setAttribute('y', 0);
+    rect.setAttribute('width', 900);
+    rect.setAttribute('height', 500);
+    rect.setAttribute('fill', 'white');
+    rect.setAttribute('stroke', 'blue');
+    rect.setAttribute('stroke-width', '5');
+    svg.appendChild(rect)
+    var len = data.length
+    var w = 900 / (len *2)
+    for (let i = 0; i < data.length; i++) {
+        const e = data[i];
+        var h = 500 * e / max
+        var rectS = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        rectS.setAttribute('x', w+ (1.8*w)*i);
+        rectS.setAttribute('y', 500-h);
+        rectS.setAttribute('width', w);
+        rectS.setAttribute('height', h);
+        rectS.setAttribute('fill', 'white');
+        rectS.setAttribute('stroke', 'red');
+        rectS.setAttribute('stroke-width', '3');
+        svg.appendChild(rectS)
+    }
+    document.body.appendChild(svg);
+})();
