@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            margin: 0 auto;
+        }
+
+        .video-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        .youtube-video-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .video-close {
+            position: absolute;
+            top: -38px;
+            right: -56px;
+            font-size: 72px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height=500></canvas>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/bt8sAKSAiPY" frameborder="0" allow="autoplay; encrypted-media ;"
+        allowfullscreen></iframe>
+
+    <span class="banner-video-inner">-</span>
+    <div class="video-mask" style="display:none">
+        <div class='youtube-video-wrap'>
+            <span class="video-close">+</span>
+            <div id="youtube-video"></div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        (function(){
+
+            // 弹出视频
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            var player;
+
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('youtube-video', {
+                    height: '360',
+                    width: '640',
+                    videoId: 'bt8sAKSAiPY'
+                });
+            }
+            var video_add = document.querySelector('.banner-video-inner')
+            var video_close = document.querySelector('.video-close')
+            var video_wrap = document.querySelector('.video-mask')
+            var video_box = document.querySelector('#youtube-video')
+            video_add.addEventListener('click', function () {
+                video_wrap.style.display = 'block'
+                setTimeout(function () {
+                    player.playVideo();
+                }, 1000)
+            })
+            video_close.addEventListener('click', function () {
+                video_wrap.style.display = 'none'
+                player.stopVideo();
+            })
+            window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady
+            window.player = player
+        })(window);
+    </script>
+    <script src="./line.js">
+    </script>
+</body>
+
+</html>

@@ -1,21 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <canvas id="canvas" width="300" height="300"></canvas>
     <script>
         var canvas = document.querySelector('#canvas')
         var context = canvas.getContext('2d');
-        context.arc(150, 150, 140, 0, 360,false);
-        context.stroke();
-        for (let i = 0; i < 12; i++) {
-            const element = 12          
+        var width = context.canvas.width
+        var height = context.canvas.height
+        var r = width / 2
+        var ratio = width / 200
+
+        function clockFrame() {
+            context.save()
+            context.translate(r, r);
+            context.beginPath();
+            context.lineWidth = 10 * ratio; // 粗细由宽度控制
+            context.arc(0, 0, r - context.lineWidth / 2, 0, 2 * Math.PI, false);
+            context.strokeStyle = '#ace'; // 外边框颜色
+            context.stroke();
+            context.fillStyle = '#fff'; // 内填充颜色
+            context.fill()
+            var num = 3
+            for (let i = 0; i < 60; i++) {
+                var rad = 2 * Math.PI / 60 * i // 每个刻度的弧度
+                var x1, x2, y1, y2 // 刻度的坐标
+                var cosdeg = Math.cos(rad)
+                var sindeg = Math.sin(rad)
+                x2 = (r - 8 * ratio) * cosdeg
+                y2 = (r - 8 * ratio) * sindeg
+                if (i % 5 === 0) { // 刻度
+                    context.beginPath();
+                    if (i == 45) { // x轴开始，y轴45 12点
+                        context.lineWidth = 5
+                    } else {
+                        context.lineWidth = 3
+                    }
+                    x1 = (r - 18 * ratio) * cosdeg
+                    y1 = (r - 18 * ratio) * sindeg
+                    context.strokeStyle = '#fee440';
+                    context.moveTo(x1, y1);
+                    context.lineTo(x2, y2);
+                    context.stroke();
+                    context.font = ratio * 10 + 'px Arial'
+                    context.fillStyle = '#777'
+                    context.textBaseline = "middle"; // 文字垂直对齐方式
+                    context.textAlign = "center"; // 文字水平对齐方式
+                    context.fillText(num, (r - 26 * ratio) * cosdeg, (r - 26 * ratio) * sindeg);
+                    num < 12 ? num++ : num = 1
+                } else {
+                    context.beginPath();
+                    context.lineWidth = 1
+                    x1 = (r - 18 * ratio) * cosdeg
+                    y1 = (r - 18 * ratio) * sindeg
+                    context.strokeStyle = '#fee440'
+                    context.moveTo(x1, y1)
+                    context.lineTo(x2, y2)
+                    context.stroke()
+                }
+            }
+
         }
+
+        //绘制时针
+        function clockHour(hour, minute) {
+            context.save();
+            var rad = 2 * Math.PI / 12 * hour;
+            var mrad = 2 * Math.PI / 12 / 60 * minute;
+            context.beginPath();
+            context.rotate(rad + mrad);// 旋转
+            context.lineWidth = 6 * ratio;
+            context.lineCap = 'round';// 结束线帽
+            context.moveTo(0, 10 * ratio);
+            context.lineTo(0, -r / 2);
+            context.strokeStyle = "#726A5E";
+            context.stroke();
+            context.restore();
+        }
+
+        //绘制分针
+        function clockMinute(minute) {
+            context.save();
+            var rad = 2 * Math.PI / 60 * minute;
+            context.beginPath();
+            context.rotate(rad);
+            context.lineWidth = 3 * ratio;
+            context.lineCap = 'round';
+            context.moveTo(0, 10 * ratio);
+            context.lineTo(0, -r + 35 * ratio);
+            context.strokeStyle = "#726A5E";
+            context.stroke();
+            context.restore();
+        }
+
+        //绘制秒针
+        function clockSecond(second) {
+            context.save();
+            var rad = 2 * Math.PI / 60 * second;
+            context.beginPath();
+            context.rotate(rad);
+            context.moveTo(-2 * ratio, 20 * ratio);
+            context.lineTo(2 * ratio, 20 * ratio);
+            context.lineTo(1 * ratio, -r + 18 * ratio);
+            context.lineTo(-1 * ratio, -r + 18 * ratio);
+            context.fillStyle = "#E25912";
+            context.fill();
+            context.restore();
+        }
+
+        //绘制固定指针的小圆圈
+        function fixedPoint() {
+            context.beginPath();
+            context.lineWidth = 4 * ratio;
+            context.arc(0, 0, 6 * ratio, 0, 2 * Math.PI, false);
+            context.strokeStyle = "#726A5E";
+            context.stroke();
+            context.fillStyle = "#ACE0ED";
+            context.fill();
+        }
+
+        function draw() {
+            context.clearRect(0, 0, width, height); //每次都清除一次画布，重新绘制
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+
+            clockFrame();
+            clockHour(hour, minute);
+            clockMinute(minute);
+            clockSecond(second);
+            fixedPoint();
+
+            context.restore();
+
+        }
+
+        draw();
+
+        setInterval(draw, 1000);
     </script>
 </body>
+
 </html>
