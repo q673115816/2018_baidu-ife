@@ -44,10 +44,27 @@
             return Math.max(...data)
         }
         var max = maxData(data)
-
+        console.log('max:'+max)
         var canvas = document.querySelector('#canvas')
         var context = canvas.getContext('2d')
+        var width = canvas.width
+        var height = canvas.height
+        var offwidth = (width - 40) / (sourceData[0].sale.length + 1)
+        // var gup = (width - 40) / sourceData[0].sale.length / 3 
+        console.log('width:'+width,'height:'+height)
         context.moveTo(20, 20);
         context.lineTo(20, 480);
         context.lineTo(780, 480)
         context.stroke();
+        sourceData[0].sale.forEach((e,i) => {
+            var offheight = (height-40) / max * e
+            var newHeight= (height-40) / max * sourceData[0].sale[i+1]
+            console.log(e)
+            context.beginPath();
+            context.arc(offwidth*(i+1), -20 + height - offheight, 5, Math.PI / 180 * 0, Math.PI / 180 * 360);
+            
+            context.moveTo(offwidth*(i+1) , -20 + height - offheight);
+            context.lineTo(offwidth*(i+2) , -20 + height - newHeight);
+            // context.lineTo(20 + gup*(i+1) + offwidth*i + offwidth , -20 + height);
+            context.stroke();
+        });
