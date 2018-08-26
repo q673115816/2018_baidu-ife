@@ -15,12 +15,17 @@
         canvas {
             margin: 0 auto;
         }
+
         table {
             border-collapse: collapse;
         }
-        tr,td,th {
+
+        tr,
+        td,
+        th {
             border: 1px solid #ace;
         }
+
         tr:hover {
             background: #eee;
             cursor: pointer;
@@ -33,10 +38,13 @@
     <div id="product-radio-wrapper"></div>
     <div id="result"></div>
     <canvas id="canvas" width="800" height=500></canvas>
+
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../sourceData.js"></script>
-    <script src="./line.js">
-    </script>
+    <script src="./sourceData.js"></script>
+    <script src="./table.js"></script>
+    <script src="./svg/bar.js"></script>
+    <script src="./canvas/line.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>
