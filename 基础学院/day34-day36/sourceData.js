@@ -35,3 +35,17 @@ let sourceData = [{
     region: "华南",
     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
 }]
+
+
+function maxData(data) {
+    if(data){
+        return Math.max(...data)
+    }
+    var arr = []
+    sourceData.forEach(e=>{
+        arr = [...arr,...e.sale]
+    })
+    return Math.max(...arr)
+}
+
+var max = maxData()

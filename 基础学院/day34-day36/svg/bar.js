@@ -1,13 +1,9 @@
 var data = sourceData[0].sale
-
-function maxData(data) {
-    return Math.max(...data)
-}
-var max = maxData(data)
 var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
 svg.setAttribute('width', '900')
 svg.setAttribute('height', '500')
 function initBar(){
+    var max = maxData(data)
     svg.innerHTML = ''
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', 0);
@@ -20,7 +16,6 @@ function initBar(){
     svg.appendChild(rect)
     var len = data.length
     var w = 900 / (len * 2)
-    console.log('initbar')
     for (let i = 0; i < data.length; i++) {
         const e = data[i];
         var h = 500 * e / max
