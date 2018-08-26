@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        tr,
+        td,
+        th {
+            border: 1px solid #ace;
+        }
+
+        tr:hover {
+            background: #eee;
+            cursor: pointer;
+        }
+
+        .chart {
+            overflow: hidden;
+        }
+
+        #canvas {
+            float: left;
+        }
+
+        #svg {
+            float: right;
+            width: 900px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chart">
+        <canvas id="canvas" width="800" height=500></canvas>
+        <div id="svg"></div>
+    </div>
+    <div id="region-radio-wrapper"></div>
+    <div id="product-radio-wrapper"></div>
+    <div id="result"></div>
+    <button type="button">保存</button>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./sourceData.js"></script>
+    <script src="./table.js"></script>
+    <script src="./bar.js"></script>
+    <script src="./line.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
