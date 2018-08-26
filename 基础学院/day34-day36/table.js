@@ -134,7 +134,7 @@ function CheckBox(dom, obj, cof) {
             all.checked = allChecked
         }
         document.querySelector('#result').innerHTML = returnTable()
-
+        init()
 
     })
 }

@@ -12,18 +12,25 @@ var height = canvas.height
 var offwidth = (width - 40) / (data.length + 1)
 // var gup = (width - 40) / sourceData[0].sale.length / 3 
 console.log('width:' + width, 'height:' + height)
-context.moveTo(20, 20);
-context.lineTo(20, 480);
-context.lineTo(780, 480)
-context.stroke();
 
+function bigin() {
+    context.moveTo(20, 20);
+    context.lineTo(20, 480);
+    context.lineTo(780, 480)
+    context.strokeStyle = '#000'
+    context.stroke();
+}
 function initLine() {
     console.log('initLine')
     context.clearRect(0, 0, width, height)
+    bigin()
+    var color = randomHexColor()
     data.forEach((e, i) => {
         var offheight = (height - 40) / max * e
         var newHeight = (height - 40) / max * data[i + 1]
         context.beginPath();
+        context.strokeStyle = color
+        context.fillStyle = color
         context.arc(offwidth * (i + 1), -20 + height - offheight, 5, Math.PI / 180 * 0, Math.PI / 180 * 360);
         context.fill()
         context.moveTo(offwidth * (i + 1), -20 + height - offheight);
@@ -34,7 +41,11 @@ function initLine() {
 }
 
 function init() {
+    console.log('init')
+    context.clearRect(0, 0, width, height)
+    bigin()
     var filter = filter || _filter
+    console.log(filter)
     var long = [filter.product.length, filter.region.length]
     sourceData.forEach((e, i) => {
         if (filter.product.includes(e.product) && filter.region.includes(e.region)) {
