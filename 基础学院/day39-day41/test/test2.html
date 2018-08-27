@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+
+    <button id="d">D</button>
+    <button id="e">E</button>
+    <button id="f">F</button>
+
+
+    <div id="contABC"></div>
+    <div id="contDEF"></div>
+
+    <script>
+        // function 解析Hash， 获取状态参数() {
+        //     取到需要的值， 并返回
+        // }
+        var qs = {
+            contABC: '',
+            contDEF: ''
+        }
+
+        function codeHash() {
+            var hash = window.location.hash || ENcode(qs)
+            var str = hash.substr(2)
+            var arr = str.split('&')
+            var obj = {
+                contABC: '',
+                contDEF: ''
+            }
+            arr.forEach((e, i) => {
+                obj[e.split('=')[0]] = e.split('=')[1]
+            })
+            return obj
+        }
+
+        function ENcode(qs) {
+            var obj = qs && typeof qs == 'object' && qs || {
+                contABC: '',
+                contDEF: ''
+            }
+            var str = '#!'
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    str += key + '=' + obj[key] + '&'
+                }
+            }
+            return str.slice(0, -1)
+        }
+        // function 渲染函数() {
+        //     内容 = 解析Hash， 获取状态参数()
+        //     cont的innerHTML = 内容
+        // }
+        function render() {
+            var contain = codeHash()
+            for (const key in contain) {
+                if (contain.hasOwnProperty(key)) {
+                    document.getElementById(key).innerHTML = contain[key]
+                }
+            }
+        }
+
+        // 按钮点击事件 = function () {
+        //     设置新的hash
+        // }
+        document.body.addEventListener('click', function (e) {
+            var e = e || window.event
+            var t = e.target
+            if (t.nodeName == 'BUTTON') {
+                var str = '#!'
+                var id = t.id.toUpperCase()
+                var contain = codeHash()
+                for (const key in contain) {
+                    if (contain.hasOwnProperty(key)) {
+                        if(key.includes(id)){
+                            contain[key] = t.id
+                        }
+                    }
+                }
+                qs = contain
+                window.location.hash =  ENcode(qs)
+            }
+        })
+        // window.onhashchange = 渲染函数
+        window.addEventListener('hashchange', function () {
+            render()
+        })
+
+        // 进来先执行一次渲染函数()
+        render()
+    </script>
+</body>
+
+</html>

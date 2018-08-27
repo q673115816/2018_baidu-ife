@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    <div id="cont"></div>
+    <script>
+        // function 解析Hash， 获取状态参数() {
+        //     取到需要的值， 并返回
+        // }
+            function codeHash(){
+                var hash = window.location.hash
+                return hash.substr(2)
+            }
+        // function 渲染函数() {
+        //     内容 = 解析Hash， 获取状态参数()
+        //     cont的innerHTML = 内容
+        // }
+        function render(){
+            var contain = codeHash()
+            document.querySelector('#cont').innerHTML = contain
+        }
+
+        // 按钮点击事件 = function () {
+        //     设置新的hash
+        // }
+            document.body.addEventListener('click',function(e){
+                var e = e || window.event
+                var t = e.target
+                if(t.nodeName=='BUTTON'){
+                    window.location.hash = '#!' + t.id
+                }
+            })
+        // window.onhashchange = 渲染函数
+            window.addEventListener('hashchange',function(){
+                render()
+            })
+
+        // 进来先执行一次渲染函数()
+        render()
+    </script>
+</body>
+
+</html>
