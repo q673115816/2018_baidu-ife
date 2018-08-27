@@ -53,10 +53,11 @@ function returnTable(filter) {
         var filter = filter || _filter
         var long = [filter.product.length, filter.region.length]
         var txt = ''
+        var data = []
         sourceData.forEach((e, i) => {
             if (filter.product.includes(e.product) && filter.region.includes(e.region)) {
-                var data = e.sale.toString()
-                txt += '<tr data-data='+ data +'>'
+                data = [...data,...e.sale]
+                txt += '<tr data-data="'+ e.sale.toString() +'" data-key="'+i+'">'
                 
                 if (long[0] <= 1 && i == 0) {
                     txt += '<td rowspan=' + long[1] + '>'
@@ -80,12 +81,18 @@ function returnTable(filter) {
 
                 e.sale.forEach(e => {
                     txt += '<td>'
-                    txt += e
+                    txt += '<span>'+e+'</span>'
+                    txt += `<div data-val="${e}" class="input-wrap" style="display:none">
+                                <input type="text" value="${e}"/>
+                                <a href="javascript:;" class="btn-confirm">确定</a>
+                                <a href="javascript:;" class="btn-cancel">取消</a>
+                            </div>`
                     txt += '</td>'
                 })
                 txt += '</tr>'
             }
         })
+        max = maxData(data)
         return txt
     }
 }
