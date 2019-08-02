@@ -21,6 +21,7 @@ function initLine() {
     bigin()
     var color = randomHexColor()
     data.forEach((e, i) => {
+        console.log(i)
         var offheight = (height - 40) / max * e
         var newHeight = (height - 40) / max * data[i + 1]
         context.beginPath();

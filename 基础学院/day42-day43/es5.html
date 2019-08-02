@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Restaurant(obj) {
+            this.cash = obj.cash || 10000
+            this.seats = obj.seats || 10
+            this.staff = obj.staff || []
+        }
+
+        Restaurant.prototype.hire = function (obj) {
+            this.staff.push(obj)
+        }
+
+        Restaurant.prototype.fire = function (obj) {
+            this.staff = this.staff.filter(function (ele) {
+                return ele !== obj
+            })
+        }
+
+
+        function Staff(name, salary) {
+            this.id = this.setid()
+            this.name = name || 'newStaff'
+            this.salary = salary || 0
+        }
+        Staff.prototype.dowork = function () {
+            console.log('need do something')
+        }
+        Staff.prototype.ID = 1
+        Staff.prototype.setid = function () {
+            return Staff.prototype.ID++
+        }
+
+
+        function Cook(name, salary) {
+            Staff.call(this, name, salary)
+        }
+        Cook.prototype = Object.create(Staff.prototype)
+        Cook.prototype.constructor = Cook
+        Cook.prototype.dowork = function () {
+            console.log('doCook')
+        }
+
+
+        function Waiter(name, salary) {
+            Staff.call(this, name, salary)
+        }
+        Waiter.prototype = Object.create(Staff.prototype)
+        Waiter.prototype.constructor = Waiter
+        Waiter.prototype.dowork = function () {
+            console.log('doWaiter')
+        }
+
+
+        function Client() {
+
+        } 
+        Client.prototype.order = function() {
+            console.log('begining order')
+        }
+        Client.prototype.eat = function() {
+            console.log('begining eat')
+        }
+
+
+        function Dishes(name, cost, price) {
+            this.name = name || 'nodish'
+            this.cost = cost || 0
+            this.price = price || 0
+        }
+
+    </script>
+</body>
+
+</html>

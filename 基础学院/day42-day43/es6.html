@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Restaurant {
+            constructor({ cash = 100, seats = 1, staff = [] }) {
+                this.cash = cash
+                this.seats = seats
+                this.staff = staff
+            }
+            hire(obj) {
+                this.staff.push(obj)
+            }
+            fire(obj) {
+                this.staff = this.staff.filter(function (ele) {
+                    return ele !== obj
+                })
+            }
+        }
+
+        ID = (function () {
+                let id = 1
+                return function () {
+                    return id++;
+                };
+            })()
+
+        class Staff {
+            constructor(name = 'newStaff', salary = 0) {
+                this.id = this.setid()
+                this.name = name
+                this.salary = salary
+            }
+            setid() {
+                return ID()
+            }
+            dowork() {
+                console.log('need do something')
+            }
+        }
+
+        class Cook extends Staff {
+            constructor(name, salary) {
+                super(name, salary)
+            }
+            dowork() {
+                console.log('doCook')
+            }
+        }
+
+        class Waiter extends Staff {
+            constructor(name, salary) {
+                super(name, salary)
+            }
+            dowork() {
+                console.log('doWaiter')
+            }
+        }
+
+        class Client {
+            order() {
+                console.log('begining order')
+            }
+            eat() {
+                console.log('begining eat')
+            }
+        }
+
+        class Dishes {
+            constructor(name = 'nodish', cost = 0, price = 0) {
+                this.name = name
+                this.cost = cost
+                this.price = price
+            }
+        }
+
+
+        var ifeRestaurant = new Restaurant({
+                cash: 1000000,
+                seats: 20,
+                staff: []
+            });
+
+            var newCook = new Cook("Tony", 10000);
+            var newCook2 = new Cook("Tony2", 10000);
+            ifeRestaurant.hire(newCook);
+            ifeRestaurant.hire(newCook2);
+
+            console.log(ifeRestaurant.staff);
+
+            ifeRestaurant.fire(newCook);
+            console.log(ifeRestaurant.staff);
+
+    </script>
+</body>
+
+</html>

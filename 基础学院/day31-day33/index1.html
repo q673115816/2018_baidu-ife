@@ -147,9 +147,9 @@
             var name = cof.name || ''
             el.innerHTML +=
                 `
-            <label>全部${text}<input type="checkbox" name='${name}' checked data-type='all'></label>
+            <label><input type="checkbox" name='${name}' checked data-type='all'>全部${text}</label>
             ${obj.map(element => {
-                return '<label>'+element.text+'<input type="checkbox" checked name="'+ name +'" data-type="'+element.value+'" data-text="'+element.text+'"></label>'
+                return '<label><input type="checkbox" checked name="'+ name +'" data - type="'+element.value+'" data - text="'+element.text+'">'+element.text+'</label>'
             }).join('')}
             `
             var all = el.querySelector('[data-type="all"]')
