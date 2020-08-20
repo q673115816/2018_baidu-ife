@@ -1,0 +1,13 @@
+{
+  "name": "2020write",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dbserver": "json-server --watch --port=1111 ./db.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
