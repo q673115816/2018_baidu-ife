@@ -1,0 +1,138 @@
+<template>
+    <div>
+        <h1>hello san!</h1>
+        <ul class="text-4xl">
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+        </ul>
+
+        <san-date-editer placeholder="选择日期"></san-date-editer>
+        <ul>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae id quas itaque commodi architecto, vero
+                reprehenderit. Veniam eius quia iusto doloremque maiores quis accusantium odio nihil adipisci totam.
+                Placeat, suscipit?
+            </li>
+        </ul>
+        <san-date-picker rect="rect" visible="{{datePickerVisible}}"></san-date-picker>
+    </div>
+</template>
+<script>
+    import datePicker from './components/Date-picker.san';
+    import dataEditer from './components/Date-editer.san'
+    export default {
+        components: {
+            'san-date-editer': dataEditer,
+            'san-date-picker': datePicker
+        },
+        data: {
+            datePickerVisible: false,
+            rect: {}
+        },
+        messages: {
+            'UI:san-date-focus'(arg) {
+                this.data.set('rect', arg)
+                this.data.set('datePickerVisible', !this.data.get('datePickerVisible'))
+            },
+            'UI:san-date-blur'(arg) {
+                console.log(arg)
+            },
+        }
+    }
+</script>
+<style>
+
+</style>

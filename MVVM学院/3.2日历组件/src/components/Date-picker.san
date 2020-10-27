@@ -1,0 +1,31 @@
+<template>
+    <div class="san-date-picker" style="{{pos}}">
+
+    </div>
+</template>
+<script>
+    export default {
+        computed: {
+            pos() {
+                if(datePickerVisible) {
+                    return {
+                        display: 'none'    
+                    }
+                } else {
+                    return {
+                        top: rect.top,
+                        left: rect.left
+                    }
+                }
+            }
+        }
+    }
+</script>
+<style>
+    .san-date-picker {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: #ace;
+    }
+</style>
